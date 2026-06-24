@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 import { usePageText } from '@/hooks/usePageText';
 
 import logo from '../../../assets/logo.png';
-
 import { Paragraph } from '../typography/Paragraph';
 
 const SCROLL_THRESHOLD = 10;
@@ -47,21 +46,21 @@ const Header = ({ onMobileMenuToggle }: Props) => {
         <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4">
             <nav
                 aria-label="Global"
-                className={`max-w-8xl mx-auto flex items-center justify-between rounded-xl border px-6 py-3 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 ${
+                className={`mx-auto flex max-w-[1400px] items-center justify-between rounded-xl border px-6 py-3 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 ${
                     isScrolled
                         ? 'border-white/50 bg-white/60 shadow-lg backdrop-blur-md'
                         : 'border-transparent bg-transparent'
                 }`}
             >
-                <div className="flex w-fit flex-1 content-center items-center gap-2 md:flex-1 md:justify-center">
+                <div className="flex w-fit flex-1 content-center items-center gap-2 md:flex-1 md:justify-start">
                     <Link href="/">
                         <motion.img
                             src={logo}
                             alt=""
                             initial={false}
                             animate={{
-                                width: isScrolled ? 40 : 150,
-                                height: isScrolled ? 40 : 72,
+                                width: isScrolled ? 40 : 180,
+                                height: isScrolled ? 40 : 45,
                             }}
                             whileHover={
                                 prefersReducedMotion
@@ -115,7 +114,10 @@ const Header = ({ onMobileMenuToggle }: Props) => {
                                     className="absolute inset-0 -z-10 rounded-xl border-b-2 border-gold shadow-sm"
                                 />
                             )}
-                            <Paragraph level="p1">
+                            <Paragraph
+                                level="p1"
+                                extendClass="text-muted-foreground"
+                            >
                                 {item.name.toUpperCase()}
                             </Paragraph>
                         </Link>

@@ -7,6 +7,11 @@
 /public/storage
 /storage/*.key
 /storage/pail
+/storage/logs
+/storage/framework/cache
+/storage/framework/sessions
+/storage/framework/views
+/bootstrap/cache
 /resources/js/actions
 /resources/js/routes
 /resources/js/wayfinder

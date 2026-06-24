@@ -6,13 +6,11 @@ import { useState } from 'react';
 import MobileMenu from '../shared/MobileMenu';
 import VerifyEmailSuccessModal from '../shared/VerifyEmailSuccessModal';
 
-import Footer from './Footer';
 import Header from './Header';
 
 export default function Welcome({
     children,
     extendClass,
-    footer = 'full',
 }: {
     children: ReactNode;
     extendClass?: string;
@@ -44,10 +42,6 @@ export default function Welcome({
                     isOpen={mobileMenuOpen}
                     onOpenChange={handleMobileMenuToggle}
                 />
-                {/*     <div className="fixed right-6 bottom-6 z-40 flex flex-col items-end gap-3">
-                    <WhatsAppButton />
-                </div> */}
-                {/* <Footer type={footer} /> */}
             </div>
             <VerifyEmailSuccessModal />
         </div>
