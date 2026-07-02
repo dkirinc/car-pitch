@@ -1,26 +1,29 @@
 import { Head } from '@inertiajs/react';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
-import Layout from '@/my-components/shared/Layout';
-import { Heading } from '@/my-components/typography/Heading';
+import CarSellCarouselSection from '@/my-components/homepage/CarSellCarouselSection';
+import HeroSection from '@/my-components/homepage/HeroSection';
+import IndexInfoSection from '@/my-components/homepage/IndexInfoSection';
+import HomepageLayout from '@/layouts/homepage-layout';
+import type { IBrand, ICar, IStats } from '@/types/models';
 
-function Welcome() {
+type Props = {
+    featuredCars: ICar[];
+    brands: IBrand[];
+    stats: IStats;
+};
+
+function Welcome({ featuredCars, brands, stats }: Props) {
     return (
         <>
-            <Head title="Welcome" />
-            <div>
-                <Heading level="h1" extendClass="text-center">
-                    Welcome to CarPitch!
-                </Heading>
-            </div>
+            <Head title="Auto Lider — Premium vozila, Otok Krk" />
+            <HeroSection />
+            <IndexInfoSection stats={stats} brands={brands} />
+            <CarSellCarouselSection cars={featuredCars} />
         </>
     );
 }
 
-Welcome.layout = (page: ReactNode) => (
-    <Layout footer="full">
-        {page}
-    </Layout>
-);
+Welcome.layout = (page: ReactNode) => <HomepageLayout>{page}</HomepageLayout>;
 
 export default Welcome;
