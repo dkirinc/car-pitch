@@ -1,5 +1,12 @@
 import { Link } from '@inertiajs/react';
-import { ArrowLeft, ArrowRight, CalendarDays, Fuel, Gauge, SlidersHorizontal } from 'lucide-react';
+import {
+    ArrowLeft,
+    ArrowRight,
+    CalendarDays,
+    Fuel,
+    Gauge,
+    SlidersHorizontal,
+} from 'lucide-react';
 import { type ReactNode, useRef } from 'react';
 
 import { Button } from '@/my-components/shared/Button';
@@ -40,7 +47,7 @@ function CarCard({ car }: { car: ICar }) {
                     </Paragraph>
                 </div>
                 <span
-                    className={`absolute left-3 top-3 px-2 py-0.5 text-[0.68rem] font-bold uppercase tracking-[0.1em] ${
+                    className={`absolute top-3 left-3 px-2 py-0.5 text-[0.68rem] font-bold tracking-[0.1em] uppercase ${
                         isNew
                             ? 'bg-gold text-bg-base'
                             : 'border border-border-default bg-bg-surface-raised text-text-secondary'
@@ -103,10 +110,15 @@ function CarCard({ car }: { car: ICar }) {
 export default function CarSellCarouselSection({ cars }: Props) {
     const scrollRef = useRef<HTMLDivElement>(null);
 
+    console.log('CarSellCarouselSection cars:', cars); // Debugging line to check the cars prop
+
     const scroll = (direction: 'left' | 'right') => {
         const el = scrollRef.current;
         if (!el) return;
-        el.scrollBy({ left: direction === 'right' ? 304 : -304, behavior: 'smooth' });
+        el.scrollBy({
+            left: direction === 'right' ? 304 : -304,
+            behavior: 'smooth',
+        });
     };
 
     return (
@@ -146,7 +158,7 @@ export default function CarSellCarouselSection({ cars }: Props) {
                         </div>
                         <Link
                             href="/cars"
-                            className="text-[0.78rem] font-bold uppercase tracking-[0.15em] text-gold underline-offset-4 hover:underline"
+                            className="text-[0.78rem] font-bold tracking-[0.15em] text-gold uppercase underline-offset-4 hover:underline"
                         >
                             Pogledaj sva vozila →
                         </Link>
@@ -157,11 +169,14 @@ export default function CarSellCarouselSection({ cars }: Props) {
                 {cars.length > 0 ? (
                     <div
                         ref={scrollRef}
-                        className="flex gap-5 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                        className="flex [scrollbar-width:none] gap-5 overflow-x-auto pb-4 [&::-webkit-scrollbar]:hidden"
                         style={{ scrollSnapType: 'x mandatory' }}
                     >
                         {cars.map((car) => (
-                            <div key={car.id} style={{ scrollSnapAlign: 'start' }}>
+                            <div
+                                key={car.id}
+                                style={{ scrollSnapAlign: 'start' }}
+                            >
                                 <CarCard car={car} />
                             </div>
                         ))}

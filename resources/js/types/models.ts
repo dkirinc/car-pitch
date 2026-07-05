@@ -22,3 +22,14 @@ export interface IStats {
     brands_count: number;
     avg_delivery_days: number;
 }
+
+export interface IBlogPost {
+    id: number;
+    title: string;
+    slug: string;
+    excerpt: string;
+    published_at: string | null;
+    car: {
+        brand: { name: string } | null;
+    } | null;
+}

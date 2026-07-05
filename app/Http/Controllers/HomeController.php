@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BlogPost;
 use App\Models\Brand;
 use App\Models\Car;
 use Inertia\Inertia;
@@ -43,10 +44,27 @@ class HomeController extends Controller
             'avg_delivery_days' => 7,
         ];
 
+        $latestPosts = BlogPost::with('car.brand')
+            ->where('is_published', true)
+            ->latest('published_at')
+            ->take(4)
+            ->get()
+            ->map(fn (BlogPost $post) => [
+                'id' => $post->id,
+                'title' => $post->title,
+                'slug' => $post->slug,
+                'excerpt' => $post->excerpt,
+                'published_at' => $post->published_at?->format('d.m.Y.'),
+                'car' => $post->car ? [
+                    'brand' => $post->car->brand ? ['name' => $post->car->brand->name] : null,
+                ] : null,
+            ]);
+
         return Inertia::render('welcome', [
             'featuredCars' => $featuredCars,
             'brands' => $brands,
             'stats' => $stats,
+            'latestPosts' => $latestPosts,
         ]);
     }
 }
