@@ -14,12 +14,20 @@ function LargeBlogCard({ post }: { post: IBlogPost }) {
 
     return (
         <Link href={`/blog/${post.slug}`} className="group relative block h-full min-h-[500px] overflow-hidden bg-bg-surface-raised">
-            {/* Image placeholder */}
-            <div className="absolute inset-0 flex items-center justify-center bg-bg-surface-raised transition-transform duration-500 group-hover:scale-105">
-                <Paragraph level="p3" extendClass="text-text-muted">
-                    Slika objave
-                </Paragraph>
-            </div>
+            {/* Image */}
+            {post.cover_url ? (
+                <img
+                    src={post.cover_url}
+                    alt={post.title}
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+            ) : (
+                <div className="absolute inset-0 flex items-center justify-center bg-bg-surface-raised">
+                    <Paragraph level="p3" extendClass="text-text-muted">
+                        Slika objave
+                    </Paragraph>
+                </div>
+            )}
 
             {/* Bottom gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-bg-base via-bg-base/60 to-transparent" />
@@ -52,11 +60,19 @@ function SmallBlogCard({ post }: { post: IBlogPost }) {
         >
             {/* Image */}
             <div className="relative w-36 flex-none overflow-hidden bg-bg-surface-raised">
-                <div className="absolute inset-0 flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
-                    <Paragraph level="p4" extendClass="text-text-muted text-center px-2">
-                        Slika
-                    </Paragraph>
-                </div>
+                {post.cover_url ? (
+                    <img
+                        src={post.cover_url}
+                        alt={post.title}
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <Paragraph level="p4" extendClass="text-text-muted text-center px-2">
+                            Slika
+                        </Paragraph>
+                    </div>
+                )}
             </div>
 
             {/* Content */}

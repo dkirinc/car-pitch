@@ -13,6 +13,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 #[Fillable([
     'brand_id', 'model', 'slug', 'year', 'body_type', 'fuel_type', 'transmission',
@@ -20,10 +22,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
     'exterior_color', 'interior_color', 'doors', 'seats', 'registration_date',
     'vin', 'equipment', 'status', 'is_featured',
 ])]
-class Car extends Model
+class Car extends Model implements HasMedia
 {
     /** @use HasFactory<CarFactory> */
-    use HasFactory, SoftDeletes;
+    use HasFactory, InteractsWithMedia, SoftDeletes;
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('images');
+    }
 
     protected function casts(): array
     {

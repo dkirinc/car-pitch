@@ -33,6 +33,7 @@ class HomeController extends Controller
                     'name' => $car->brand->name,
                     'slug' => $car->brand->slug,
                 ],
+                'thumbnail_url' => $car->getFirstMediaUrl('images'),
             ]);
 
         $brands = Brand::where('is_active', true)
@@ -56,6 +57,7 @@ class HomeController extends Controller
                 'slug' => $post->slug,
                 'excerpt' => $post->excerpt,
                 'published_at' => $post->published_at?->format('d.m.Y.'),
+                'cover_url' => $post->getFirstMediaUrl('cover'),
                 'car' => $post->car ? [
                     'brand' => $post->car->brand ? ['name' => $post->car->brand->name] : null,
                 ] : null,

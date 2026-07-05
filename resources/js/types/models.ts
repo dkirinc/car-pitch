@@ -15,6 +15,7 @@ export interface ICar {
     price: string | null;
     status: 'novo' | 'dostupno';
     brand: IBrand;
+    thumbnail_url: string;
 }
 
 export interface IStats {
@@ -38,6 +39,7 @@ export interface IBlogPost {
     slug: string;
     excerpt: string;
     published_at: string | null;
+    cover_url: string;
     car: {
         brand: { name: string } | null;
     } | null;

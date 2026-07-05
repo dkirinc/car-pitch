@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import type { ReactNode } from 'react';
 import { useState } from 'react';
 
+import Footer from '@/my-components/shared/Footer';
 import Header from '@/my-components/shared/Header';
 import MobileMenu from '@/my-components/shared/MobileMenu';
 
@@ -21,6 +22,7 @@ export default function HomepageLayout({ children }: { children: ReactNode }) {
             >
                 {children}
             </motion.main>
+            <Footer />
             <MobileMenu isOpen={mobileMenuOpen} onOpenChange={setMobileMenuOpen} />
         </div>
     );

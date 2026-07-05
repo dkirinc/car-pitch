@@ -38,14 +38,22 @@ function CarCard({ car }: { car: ICar }) {
     const isNew = car.status === 'novo';
 
     return (
-        <div className="flex w-72 flex-none flex-col border border-border-default bg-bg-surface transition-colors duration-200 hover:border-gold-border">
+        <div className="group flex w-72 flex-none flex-col border border-border-default bg-bg-surface transition-colors duration-200 hover:border-gold-border">
             {/* Image area */}
             <div className="relative h-48 overflow-hidden bg-bg-surface-raised">
-                <div className="absolute inset-0 flex items-center justify-center">
-                    <Paragraph level="p3" extendClass="text-text-muted">
-                        Slika vozila
-                    </Paragraph>
-                </div>
+                {car.thumbnail_url ? (
+                    <img
+                        src={car.thumbnail_url}
+                        alt={`${car.brand.name} ${car.model}`}
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <Paragraph level="p3" extendClass="text-text-muted">
+                            Slika vozila
+                        </Paragraph>
+                    </div>
+                )}
                 <span
                     className={`absolute top-3 left-3 px-2 py-0.5 text-[0.68rem] font-bold tracking-[0.1em] uppercase ${
                         isNew
