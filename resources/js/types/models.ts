@@ -23,6 +23,15 @@ export interface IStats {
     avg_delivery_days: number;
 }
 
+export interface IReview {
+    id: number;
+    author_name: string;
+    author_initials: string;
+    car_model: string;
+    rating: number;
+    content: string;
+}
+
 export interface IBlogPost {
     id: number;
     title: string;

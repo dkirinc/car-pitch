@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\BlogPost;
 use App\Models\Brand;
 use App\Models\Car;
+use App\Models\Review;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -60,11 +61,17 @@ class HomeController extends Controller
                 ] : null,
             ]);
 
+        $reviews = Review::where('is_published', true)
+            ->latest()
+            ->take(3)
+            ->get(['id', 'author_name', 'author_initials', 'car_model', 'rating', 'content']);
+
         return Inertia::render('welcome', [
             'featuredCars' => $featuredCars,
             'brands' => $brands,
             'stats' => $stats,
             'latestPosts' => $latestPosts,
+            'reviews' => $reviews,
         ]);
     }
 }
