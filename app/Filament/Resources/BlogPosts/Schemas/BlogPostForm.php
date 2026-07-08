@@ -3,12 +3,12 @@
 namespace App\Filament\Resources\BlogPosts\Schemas;
 
 use Filament\Forms\Components\DateTimePicker;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Str;
 
@@ -29,7 +29,7 @@ class BlogPostForm
                             ->required()
                             ->label('Naslov')
                             ->live(onBlur: true)
-                            ->afterStateUpdated(fn (string $state, callable $set) => $set('slug', Str::slug($state) . '-' . Str::lower(Str::random(6)))),
+                            ->afterStateUpdated(fn (string $state, callable $set) => $set('slug', Str::slug($state).'-'.Str::lower(Str::random(6)))),
                         TextInput::make('slug')
                             ->required()
                             ->unique(ignoreRecord: true)

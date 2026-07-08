@@ -18,7 +18,7 @@ class BlogPost extends Model implements HasMedia
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('cover');
+        $this->addMediaCollection('cover')->useDisk('public');
     }
 
     protected function casts(): array

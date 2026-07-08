@@ -36,7 +36,10 @@ function StatCounter({ value, label, suffix = '' }: StatCounterProps) {
 
                     const step = (timestamp: number) => {
                         if (!start) start = timestamp;
-                        const progress = Math.min((timestamp - start) / duration, 1);
+                        const progress = Math.min(
+                            (timestamp - start) / duration,
+                            1,
+                        );
                         const eased = 1 - Math.pow(1 - progress, 3);
                         setCount(Math.floor(eased * value));
                         if (progress < 1) requestAnimationFrame(step);
@@ -53,7 +56,7 @@ function StatCounter({ value, label, suffix = '' }: StatCounterProps) {
     }, [value]);
 
     return (
-        <div ref={ref} className="flex flex-col items-center gap-3 py-12 px-8">
+        <div ref={ref} className="flex flex-col items-center gap-3 px-8 py-12">
             <Heading level="h0" extendClass="text-gold tabular-nums">
                 {count}
                 {suffix}
@@ -69,11 +72,11 @@ export default function IndexInfoSection({ stats, brands }: Props) {
     const { t } = usePageText();
 
     return (
-        <div>
+        <div className="flex flex-col gap-30 bg-bg-surface">
             {/* Stats bar */}
-            <section className="border-y border-border-default bg-bg-surface">
+            <section className="border-t border-border-default">
                 <div className="mx-auto max-w-7xl px-6 lg:px-12">
-                    <div className="grid grid-cols-1 divide-y divide-border-default md:grid-cols-3 md:divide-x md:divide-y-0">
+                    <div className="grid grid-cols-1 md:grid-cols-3">
                         <StatCounter
                             value={stats.cars_sold}
                             label={t('static', 'stats.carsSold')}
@@ -92,7 +95,7 @@ export default function IndexInfoSection({ stats, brands }: Props) {
             </section>
 
             {/* Brands strip */}
-            <section className="border-b border-border-default bg-bg-base py-10">
+            <section className="border-b border-border-default py-20">
                 <div className="mx-auto max-w-7xl px-6 lg:px-12">
                     <Paragraph
                         level="p4"

@@ -6,15 +6,15 @@ use App\Enums\BodyType;
 use App\Enums\CarStatus;
 use App\Enums\FuelType;
 use App\Enums\Transmission;
+use App\Models\Brand;
 use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Str;
 
@@ -36,8 +36,8 @@ class CarForm
                             ->label('Model')
                             ->live(onBlur: true)
                             ->afterStateUpdated(function (string $state, callable $set, callable $get) {
-                                $brand = \App\Models\Brand::find($get('brand_id'));
-                                $slug = Str::slug(($brand?->slug ?? '') . '-' . $state) . '-' . Str::lower(Str::random(6));
+                                $brand = Brand::find($get('brand_id'));
+                                $slug = Str::slug(($brand?->slug ?? '').'-'.$state).'-'.Str::lower(Str::random(6));
                                 $set('slug', $slug);
                             }),
                         TextInput::make('slug')
