@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
+import { usePageText } from '@/hooks/usePageText';
 import { Heading } from '@/my-components/typography/Heading';
 import { Paragraph } from '@/my-components/typography/Paragraph';
 import type { IBrand, IStats } from '@/types/models';
@@ -65,6 +66,8 @@ function StatCounter({ value, label, suffix = '' }: StatCounterProps) {
 }
 
 export default function IndexInfoSection({ stats, brands }: Props) {
+    const { t } = usePageText();
+
     return (
         <div>
             {/* Stats bar */}
@@ -73,16 +76,16 @@ export default function IndexInfoSection({ stats, brands }: Props) {
                     <div className="grid grid-cols-1 divide-y divide-border-default md:grid-cols-3 md:divide-x md:divide-y-0">
                         <StatCounter
                             value={stats.cars_sold}
-                            label="Prodanih automobila"
+                            label={t('static', 'stats.carsSold')}
                             suffix="+"
                         />
                         <StatCounter
                             value={stats.brands_count}
-                            label="Premium brendova"
+                            label={t('static', 'stats.brandsCount')}
                         />
                         <StatCounter
                             value={stats.avg_delivery_days}
-                            label="Prosječna isporuka (dana)"
+                            label={t('static', 'stats.avgDelivery')}
                         />
                     </div>
                 </div>
@@ -95,7 +98,7 @@ export default function IndexInfoSection({ stats, brands }: Props) {
                         level="p4"
                         extendClass="text-text-muted uppercase tracking-[0.25em] text-center mb-8"
                     >
-                        Brendovi u ponudi
+                        {t('static', 'stats.brandsStripLabel')}
                     </Paragraph>
                     <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-5">
                         {brands.map((brand) => (

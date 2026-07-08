@@ -3,27 +3,30 @@ import { Menu as MenuIcon } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { useEffect, useState } from 'react';
 
+import { usePageText } from '@/hooks/usePageText';
+
 import logo from '../../../assets/logo.png';
 import { Paragraph } from '../typography/Paragraph';
 
 const SCROLL_THRESHOLD = 10;
-
-const NAV_ITEMS = [
-    { label: 'Vozila', href: '/cars' },
-    { label: 'O nama', href: '/about' },
-    { label: 'Blog', href: '/blog' },
-    { label: 'Kontakt', href: '/contact' },
-];
 
 type Props = {
     onMobileMenuToggle: (open: boolean) => void;
 };
 
 const Header = ({ onMobileMenuToggle }: Props) => {
-    const prefersReducedMotion = useReducedMotion();
+    const { t } = usePageText();
+
+    const NAV_ITEMS = [
+        { label: t('static', 'nav.vozila'), href: '/cars' },
+        { label: t('static', 'nav.oNama'), href: '/about' },
+        { label: t('static', 'nav.blog'), href: '/blog' },
+        { label: t('static', 'nav.kontakt'), href: '/contact' },
+    ];
 
     const [isScrolled, setIsScrolled] = useState(
-        () => typeof window !== 'undefined' && window.scrollY > SCROLL_THRESHOLD,
+        () =>
+            typeof window !== 'undefined' && window.scrollY > SCROLL_THRESHOLD,
     );
     const [hoveredKey, setHoveredKey] = useState<string | null>(null);
 
@@ -41,7 +44,7 @@ const Header = ({ onMobileMenuToggle }: Props) => {
     return (
         <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4">
             <nav
-                aria-label="Navigacija"
+                aria-label={t('static', 'header.ariaLabel')}
                 className={`mx-auto flex max-w-[1400px] items-center justify-between rounded-xl border px-6 py-3 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 ${
                     isScrolled
                         ? 'border-white/10 bg-bg-base/80 shadow-lg backdrop-blur-md'
@@ -51,24 +54,11 @@ const Header = ({ onMobileMenuToggle }: Props) => {
                 {/* Logo */}
                 <div className="flex flex-1 items-center">
                     <Link href="/">
-                        <motion.img
+                        <img
                             src={logo}
-                            alt="Auto Lider"
-                            initial={false}
-                            animate={{
-                                width: isScrolled ? 40 : 120,
-                                height: isScrolled ? 40 : 40,
-                            }}
-                            transition={
-                                prefersReducedMotion
-                                    ? { duration: 0 }
-                                    : {
-                                          width: { type: 'spring', stiffness: 350, damping: 90 },
-                                          height: { type: 'spring', stiffness: 350, damping: 90 },
-                                      }
-                            }
-                            className="object-contain"
-                        />
+                            alt={t('static', 'brand.name')}
+                            className="h-8 w-auto"
+                        ></img>
                     </Link>
                 </div>
 
@@ -88,11 +78,18 @@ const Header = ({ onMobileMenuToggle }: Props) => {
                                 <motion.span
                                     layoutId="navHoverPill"
                                     aria-hidden="true"
-                                    transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                                    transition={{
+                                        type: 'spring',
+                                        stiffness: 380,
+                                        damping: 32,
+                                    }}
                                     className="absolute inset-0 -z-10 rounded-lg border-b-2 border-gold"
                                 />
                             )}
-                            <Paragraph level="p3" extendClass="text-text-secondary font-semibold uppercase tracking-[0.1em]">
+                            <Paragraph
+                                level="p3"
+                                extendClass="text-text-secondary font-semibold uppercase tracking-[0.1em]"
+                            >
                                 {item.label}
                             </Paragraph>
                         </Link>
@@ -103,9 +100,9 @@ const Header = ({ onMobileMenuToggle }: Props) => {
                 <div className="hidden flex-1 items-center justify-end md:flex">
                     <Link
                         href="/contact"
-                        className="border border-gold-border px-5 py-2 text-[0.75rem] font-bold uppercase tracking-[0.15em] text-gold transition-colors duration-200 hover:border-gold/60 hover:bg-gold-subtle"
+                        className="border border-gold-border px-5 py-2 text-[0.75rem] font-bold tracking-[0.15em] text-gold uppercase transition-colors duration-200 hover:border-gold/60 hover:bg-gold-subtle"
                     >
-                        Kontaktiraj nas
+                        {t('static', 'header.ctaLabel')}
                     </Link>
                 </div>
 
@@ -114,7 +111,7 @@ const Header = ({ onMobileMenuToggle }: Props) => {
                     <button
                         type="button"
                         onClick={() => onMobileMenuToggle(true)}
-                        aria-label="Otvori izbornik"
+                        aria-label={t('static', 'header.openMenuAria')}
                         className="text-text-primary"
                     >
                         <MenuIcon aria-hidden="true" className="size-6" />

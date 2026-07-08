@@ -1,5 +1,6 @@
 import { Link } from '@inertiajs/react';
 
+import { usePageText } from '@/hooks/usePageText';
 import { NavArrows } from '@/my-components/shared/NavArrows';
 import { SectionEyebrow } from '@/my-components/shared/SectionEyebrow';
 import { Heading } from '@/my-components/typography/Heading';
@@ -11,6 +12,7 @@ type Props = {
 };
 
 function LargeBlogCard({ post }: { post: IBlogPost }) {
+    const { t } = usePageText();
     const brandName = post.car?.brand?.name ?? null;
 
     return (
@@ -25,7 +27,7 @@ function LargeBlogCard({ post }: { post: IBlogPost }) {
             ) : (
                 <div className="absolute inset-0 flex items-center justify-center bg-bg-surface-raised">
                     <Paragraph level="p3" extendClass="text-text-muted">
-                        Slika objave
+                        {t('static', 'blog.imagePlaceholderLarge')}
                     </Paragraph>
                 </div>
             )}
@@ -52,6 +54,7 @@ function LargeBlogCard({ post }: { post: IBlogPost }) {
 }
 
 function SmallBlogCard({ post }: { post: IBlogPost }) {
+    const { t } = usePageText();
     const brandName = post.car?.brand?.name ?? null;
 
     return (
@@ -70,7 +73,7 @@ function SmallBlogCard({ post }: { post: IBlogPost }) {
                 ) : (
                     <div className="absolute inset-0 flex items-center justify-center">
                         <Paragraph level="p4" extendClass="text-text-muted text-center px-2">
-                            Slika
+                            {t('static', 'blog.imagePlaceholderSmall')}
                         </Paragraph>
                     </div>
                 )}
@@ -95,6 +98,8 @@ function SmallBlogCard({ post }: { post: IBlogPost }) {
 }
 
 export default function BlogSection({ posts }: Props) {
+    const { t } = usePageText();
+
     if (posts.length === 0) return null;
 
     const [featured, ...rest] = posts;
@@ -104,7 +109,10 @@ export default function BlogSection({ posts }: Props) {
             <div className="mx-auto max-w-7xl px-6 lg:px-12">
                 {/* Section header */}
                 <div className="mb-10 flex items-end justify-between">
-                    <SectionEyebrow label="Blog" title="Najnovije objave" />
+                    <SectionEyebrow
+                        label={t('static', 'blog.eyebrow')}
+                        title={t('static', 'blog.title')}
+                    />
                     <NavArrows />
                 </div>
 
@@ -127,7 +135,7 @@ export default function BlogSection({ posts }: Props) {
                         href="/blog"
                         className="text-[0.78rem] font-bold uppercase tracking-[0.15em] text-gold underline-offset-4 hover:underline"
                     >
-                        Pogledaj sve objave →
+                        {t('static', 'blog.viewAllCta')}
                     </Link>
                 </div>
             </div>

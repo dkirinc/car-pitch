@@ -2,6 +2,7 @@ import { Link } from '@inertiajs/react';
 import { CalendarDays, Fuel, Gauge, SlidersHorizontal } from 'lucide-react';
 import { type ReactNode, useRef, useState } from 'react';
 
+import { usePageText } from '@/hooks/usePageText';
 import { Button } from '@/my-components/shared/Button';
 import { CarInquiryModal } from '@/my-components/shared/CarInquiryModal';
 import { NavArrows } from '@/my-components/shared/NavArrows';
@@ -31,6 +32,7 @@ function SpecItem({ icon, label }: SpecItemProps) {
 }
 
 function CarCard({ car }: { car: ICar }) {
+    const { t } = usePageText();
     const isNew = car.status === 'novo';
     const [inquiryOpen, setInquiryOpen] = useState(false);
 
@@ -46,7 +48,7 @@ function CarCard({ car }: { car: ICar }) {
                 ) : (
                     <div className="absolute inset-0 flex items-center justify-center">
                         <Paragraph level="p3" extendClass="text-text-muted">
-                            Slika vozila
+                            {t('static', 'carSell.imagePlaceholder')}
                         </Paragraph>
                     </div>
                 )}
@@ -57,7 +59,7 @@ function CarCard({ car }: { car: ICar }) {
                             : 'border border-border-default bg-bg-surface-raised text-text-secondary'
                     }`}
                 >
-                    {isNew ? 'Novo' : 'Dostupno'}
+                    {isNew ? t('static', 'carSell.badgeNew') : t('static', 'carSell.badgeAvailable')}
                 </span>
             </div>
 
@@ -77,11 +79,13 @@ function CarCard({ car }: { car: ICar }) {
                 </div>
 
                 <Paragraph level="p2" extendClass="text-gold font-semibold">
-                    {car.price ? `${Number(car.price).toLocaleString('hr-HR')} €` : 'Od upita'}
+                    {car.price
+                        ? `${Number(car.price).toLocaleString('hr-HR')} €`
+                        : t('static', 'carSell.priceOnRequest')}
                 </Paragraph>
 
                 <Button
-                    label="POŠALJI UPIT →"
+                    label={t('static', 'forms.submitCta')}
                     color="blue"
                     onClick={() => setInquiryOpen(true)}
                     extendClass="mt-auto w-full justify-center"
@@ -94,6 +98,7 @@ function CarCard({ car }: { car: ICar }) {
 }
 
 export default function CarSellCarouselSection({ cars }: Props) {
+    const { t } = usePageText();
     const scrollRef = useRef<HTMLDivElement>(null);
 
     const scroll = (direction: 'left' | 'right') => {
@@ -104,14 +109,17 @@ export default function CarSellCarouselSection({ cars }: Props) {
         <section className="bg-bg-base py-20">
             <div className="mx-auto max-w-7xl px-6 lg:px-12">
                 <div className="mb-10 flex items-end justify-between">
-                    <SectionEyebrow label="Ponuda" title="Vozila u ponudi" />
+                    <SectionEyebrow
+                        label={t('static', 'carSell.eyebrow')}
+                        title={t('static', 'carSell.title')}
+                    />
                     <div className="flex items-center gap-4">
                         <NavArrows onPrev={() => scroll('left')} onNext={() => scroll('right')} />
                         <Link
                             href="/cars"
                             className="text-[0.78rem] font-bold uppercase tracking-[0.15em] text-gold underline-offset-4 hover:underline"
                         >
-                            Pogledaj sva vozila →
+                            {t('static', 'carSell.viewAllCta')}
                         </Link>
                     </div>
                 </div>
@@ -131,7 +139,7 @@ export default function CarSellCarouselSection({ cars }: Props) {
                 ) : (
                     <div className="flex h-64 items-center justify-center border border-border-default bg-bg-surface">
                         <Paragraph level="p2" extendClass="text-text-muted">
-                            Trenutno nema istaknutih vozila u ponudi.
+                            {t('static', 'carSell.emptyState')}
                         </Paragraph>
                     </div>
                 )}

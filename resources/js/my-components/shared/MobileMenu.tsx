@@ -1,16 +1,10 @@
 import { Drawer } from '@heroui/react';
 import { Link } from '@inertiajs/react';
 
+import { usePageText } from '@/hooks/usePageText';
+
 import logo from '../../../assets/logo.png';
 import { Paragraph } from '../typography/Paragraph';
-
-const NAV_ITEMS = [
-    { label: 'Početna', href: '/' },
-    { label: 'Vozila', href: '/cars' },
-    { label: 'O nama', href: '/about' },
-    { label: 'Blog', href: '/blog' },
-    { label: 'Kontakt', href: '/contact' },
-];
 
 type Props = {
     isOpen: boolean;
@@ -18,6 +12,16 @@ type Props = {
 };
 
 export default function MobileMenu({ isOpen, onOpenChange }: Props) {
+    const { t } = usePageText();
+
+    const NAV_ITEMS = [
+        { label: t('static', 'nav.pocetna'), href: '/' },
+        { label: t('static', 'nav.vozila'), href: '/cars' },
+        { label: t('static', 'nav.oNama'), href: '/about' },
+        { label: t('static', 'nav.blog'), href: '/blog' },
+        { label: t('static', 'nav.kontakt'), href: '/contact' },
+    ];
+
     const close = () => onOpenChange(false);
 
     return (
@@ -27,7 +31,7 @@ export default function MobileMenu({ isOpen, onOpenChange }: Props) {
                     <Drawer.Dialog className="w-full bg-bg-surface sm:max-w-sm">
                         <Drawer.Header className="flex items-center justify-between border-b border-border-default px-6 py-4">
                             <Link href="/" onClick={close}>
-                                <img src={logo} alt="Auto Lider" className="h-8 w-auto" />
+                                <img src={logo} alt={t('static', 'brand.name')} className="h-8 w-auto" />
                             </Link>
                             <Drawer.CloseTrigger className="text-text-secondary transition-colors hover:text-text-primary" />
                         </Drawer.Header>
@@ -57,7 +61,7 @@ export default function MobileMenu({ isOpen, onOpenChange }: Props) {
                                     onClick={close}
                                     className="block w-full bg-gold py-3 text-center text-[0.78rem] font-bold uppercase tracking-[0.15em] text-bg-base transition-colors hover:bg-gold-dark"
                                 >
-                                    Kontaktiraj nas
+                                    {t('static', 'header.ctaLabel')}
                                 </Link>
                             </div>
                         </Drawer.Body>

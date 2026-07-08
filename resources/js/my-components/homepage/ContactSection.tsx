@@ -3,6 +3,7 @@ import { useForm, usePage } from '@inertiajs/react';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { useEffect } from 'react';
 
+import { usePageText } from '@/hooks/usePageText';
 import { Button } from '@/my-components/shared/Button';
 import { SectionEyebrow } from '@/my-components/shared/SectionEyebrow';
 import { Paragraph } from '@/my-components/typography/Paragraph';
@@ -35,6 +36,7 @@ const fieldClass =
     'w-full bg-bg-surface-raised border border-border-default px-4 py-3 text-[0.9rem] text-text-primary placeholder:text-text-muted outline-none focus:border-gold/55 transition-colors duration-200 rounded-none';
 
 export default function ContactSection() {
+    const { t } = usePageText();
     const { flash } = usePage<SharedProps>().props;
 
     const { data, setData, post, processing, reset } = useForm<FormData>({
@@ -63,25 +65,27 @@ export default function ContactSection() {
                     {/* Left — info */}
                     <div className="flex flex-col gap-8">
                         <div className="flex flex-col gap-4">
-                            <SectionEyebrow label="Kontakt" title="Pronađimo zajedno vaš savršeni automobil" />
+                            <SectionEyebrow
+                                label={t('static', 'contact.eyebrow')}
+                                title={t('static', 'contact.title')}
+                            />
                             <Paragraph level="p2" extendClass="text-text-secondary">
-                                Kontaktirajte nas za upit o dobavljivosti željenog modela,
-                                cijeni ili uvjetima financiranja. Odgovaramo u roku 24 sata.
+                                {t('static', 'contact.description')}
                             </Paragraph>
                         </div>
 
                         <div className="flex flex-col gap-5">
                             <ContactInfoItem
                                 icon={<Phone className="size-4" />}
-                                value="+385 98 932 2969"
+                                value={t('static', 'contactInfo.phone')}
                             />
                             <ContactInfoItem
                                 icon={<Mail className="size-4" />}
-                                value="info@autolider.com.hr"
+                                value={t('static', 'contactInfo.email')}
                             />
                             <ContactInfoItem
                                 icon={<MapPin className="size-4" />}
-                                value="Otok Krk, Hrvatska"
+                                value={t('static', 'contactInfo.address')}
                             />
                         </div>
                     </div>
@@ -91,7 +95,7 @@ export default function ContactSection() {
                         {flash?.contact_success && (
                             <div className="mb-6 border border-gold-border bg-gold-subtle px-5 py-4">
                                 <Paragraph level="p2" extendClass="text-gold">
-                                    Upit je uspješno poslan. Javit ćemo vam se u roku 24 sata.
+                                    {t('static', 'contact.successMessage')}
                                 </Paragraph>
                             </div>
                         )}
@@ -102,7 +106,7 @@ export default function ContactSection() {
                                 onChange={(v) => setData('name', v)}
                                 className="flex flex-col gap-1"
                             >
-                                <Input type="text" placeholder="Ime i prezime *" className={fieldClass} />
+                                <Input type="text" placeholder={t('static', 'forms.namePlaceholder')} className={fieldClass} />
                                 <FieldError className="text-[0.72rem] text-destructive" />
                             </TextField>
 
@@ -111,7 +115,7 @@ export default function ContactSection() {
                                 onChange={(v) => setData('email', v)}
                                 className="flex flex-col gap-1"
                             >
-                                <Input type="email" placeholder="E-mail adresa *" className={fieldClass} />
+                                <Input type="email" placeholder={t('static', 'forms.emailPlaceholder')} className={fieldClass} />
                                 <FieldError className="text-[0.72rem] text-destructive" />
                             </TextField>
 
@@ -120,7 +124,7 @@ export default function ContactSection() {
                                 onChange={(v) => setData('phone', v)}
                                 className="flex flex-col gap-1"
                             >
-                                <Input type="tel" placeholder="Broj telefona *" className={fieldClass} />
+                                <Input type="tel" placeholder={t('static', 'forms.phonePlaceholder')} className={fieldClass} />
                                 <FieldError className="text-[0.72rem] text-destructive" />
                             </TextField>
 
@@ -130,7 +134,7 @@ export default function ContactSection() {
                                 className="flex flex-col gap-1"
                             >
                                 <TextArea
-                                    placeholder="Koji automobil vas zanima?"
+                                    placeholder={t('static', 'contact.messagePlaceholder')}
                                     rows={5}
                                     className={`${fieldClass} resize-none`}
                                 />
@@ -140,7 +144,7 @@ export default function ContactSection() {
                             <Button
                                 type="submit"
                                 color="orange"
-                                label={processing ? 'SLANJE...' : 'POŠALJI UPIT →'}
+                                label={processing ? t('static', 'forms.sendingCta') : t('static', 'forms.submitCta')}
                                 disabled={processing}
                                 onClick={() => {}}
                                 extendClass="mt-2 uppercase"

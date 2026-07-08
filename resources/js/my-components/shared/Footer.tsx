@@ -1,16 +1,10 @@
 import { Link } from '@inertiajs/react';
 
+import { usePageText } from '@/hooks/usePageText';
 import { Heading } from '@/my-components/typography/Heading';
 import { Paragraph } from '@/my-components/typography/Paragraph';
 
 import logo from '../../../assets/logo.png';
-
-const NAV_LINKS = [
-    { label: 'Prodaja vozila', href: '/cars' },
-    { label: 'O nama', href: '/about' },
-    { label: 'Blog', href: '/blog' },
-    { label: 'Kontakt', href: '/contact' },
-];
 
 function FacebookIcon() {
     return (
@@ -29,7 +23,15 @@ function YouTubeIcon() {
 }
 
 export default function Footer() {
+    const { t } = usePageText();
     const year = new Date().getFullYear();
+
+    const NAV_LINKS = [
+        { label: t('static', 'footer.navProdajaVozila'), href: '/cars' },
+        { label: t('static', 'nav.oNama'), href: '/about' },
+        { label: t('static', 'nav.blog'), href: '/blog' },
+        { label: t('static', 'nav.kontakt'), href: '/contact' },
+    ];
 
     return (
         <footer className="border-t border-border-default bg-bg-surface">
@@ -39,18 +41,17 @@ export default function Footer() {
                     {/* Col 1 — Brand */}
                     <div className="flex flex-col gap-5">
                         <Link href="/">
-                            <img src={logo} alt="Auto Lider" className="h-10 w-auto" />
+                            <img src={logo} alt={t('static', 'brand.name')} className="h-10 w-auto" />
                         </Link>
                         <Paragraph level="p2" extendClass="text-text-secondary max-w-xs">
-                            Vaš premium partner za kupovinu novih automobila. Audi, BMW,
-                            Volkswagen, Volvo i više od 12 premium brendova.
+                            {t('static', 'footer.tagline')}
                         </Paragraph>
                         <div className="flex gap-3">
                             <a
                                 href="https://facebook.com"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                aria-label="Facebook"
+                                aria-label={t('static', 'footer.facebookAria')}
                                 className="flex size-9 items-center justify-center border border-border-default text-text-muted transition-colors duration-200 hover:border-gold-border hover:text-gold"
                             >
                                 <FacebookIcon />
@@ -59,7 +60,7 @@ export default function Footer() {
                                 href="https://youtube.com"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                aria-label="YouTube"
+                                aria-label={t('static', 'footer.youtubeAria')}
                                 className="flex size-9 items-center justify-center border border-border-default text-text-muted transition-colors duration-200 hover:border-gold-border hover:text-gold"
                             >
                                 <YouTubeIcon />
@@ -70,7 +71,7 @@ export default function Footer() {
                     {/* Col 2 — Navigation */}
                     <div className="flex flex-col gap-4">
                         <Heading level="h6" extendClass="text-text-muted uppercase tracking-[0.2em]">
-                            Navigacija
+                            {t('static', 'footer.navTitle')}
                         </Heading>
                         <nav className="flex flex-col gap-3">
                             {NAV_LINKS.map((link) => (
@@ -88,20 +89,20 @@ export default function Footer() {
                     {/* Col 3 — Contact */}
                     <div className="flex flex-col gap-4">
                         <Heading level="h6" extendClass="text-text-muted uppercase tracking-[0.2em]">
-                            Kontakt
+                            {t('static', 'footer.contactTitle')}
                         </Heading>
                         <div className="flex flex-col gap-3">
                             <a
-                                href="tel:+385989322969"
+                                href={t('static', 'contactInfo.phoneHref')}
                                 className="w-fit text-[0.9rem] text-text-secondary transition-colors duration-200 hover:text-gold"
                             >
-                                +385 98 932 2969
+                                {t('static', 'contactInfo.phone')}
                             </a>
                             <a
-                                href="mailto:info@autolider.com.hr"
+                                href={t('static', 'contactInfo.emailHref')}
                                 className="w-fit text-[0.9rem] text-text-secondary transition-colors duration-200 hover:text-gold"
                             >
-                                info@autolider.com.hr
+                                {t('static', 'contactInfo.email')}
                             </a>
                         </div>
                     </div>
@@ -110,10 +111,10 @@ export default function Footer() {
                 {/* Bottom bar */}
                 <div className="flex flex-col items-center justify-between gap-3 border-t border-border-default py-6 md:flex-row">
                     <Paragraph level="p3" extendClass="text-text-muted">
-                        © {year} Auto Lider. Sva prava pridržana.
+                        © {year} {t('static', 'footer.copyrightSuffix')}
                     </Paragraph>
                     <Paragraph level="p3" extendClass="text-text-muted">
-                        Otok Krk, Hrvatska
+                        {t('static', 'footer.location')}
                     </Paragraph>
                 </div>
             </div>

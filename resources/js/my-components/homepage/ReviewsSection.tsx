@@ -1,3 +1,4 @@
+import { usePageText } from '@/hooks/usePageText';
 import { SectionEyebrow } from '@/my-components/shared/SectionEyebrow';
 import { Paragraph } from '@/my-components/typography/Paragraph';
 import type { IReview } from '@/types/models';
@@ -53,13 +54,18 @@ function ReviewCard({ review }: { review: IReview }) {
 }
 
 export default function ReviewsSection({ reviews }: Props) {
+    const { t } = usePageText();
+
     if (reviews.length === 0) return null;
 
     return (
         <section className="bg-bg-surface py-20">
             <div className="mx-auto max-w-7xl px-6 lg:px-12">
                 <div className="mb-10">
-                    <SectionEyebrow label="Recenzije" title="Zadovoljne stranke" />
+                    <SectionEyebrow
+                        label={t('static', 'reviews.eyebrow')}
+                        title={t('static', 'reviews.title')}
+                    />
                 </div>
 
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">

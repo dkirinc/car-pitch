@@ -1,6 +1,7 @@
 import { FieldError, Input, Modal, TextArea, TextField } from '@heroui/react';
 import { useForm } from '@inertiajs/react';
 
+import { usePageText } from '@/hooks/usePageText';
 import { Button } from '@/my-components/shared/Button';
 import { Heading } from '@/my-components/typography/Heading';
 import { Paragraph } from '@/my-components/typography/Paragraph';
@@ -23,6 +24,7 @@ const fieldClass =
     'w-full bg-bg-surface-raised border border-border-default px-4 py-3 text-[0.9rem] text-text-primary placeholder:text-text-muted outline-none focus:border-gold/55 transition-colors duration-200 rounded-none';
 
 export function CarInquiryModal({ car, isOpen, onOpenChange }: Props) {
+    const { t } = usePageText();
     const { data, setData, post, processing, reset } = useForm<FormData>({
         name: '',
         email: '',
@@ -63,7 +65,7 @@ export function CarInquiryModal({ car, isOpen, onOpenChange }: Props) {
                                     onChange={(v) => setData('name', v)}
                                     className="flex flex-col gap-1"
                                 >
-                                    <Input type="text" placeholder="Ime i prezime *" className={fieldClass} />
+                                    <Input type="text" placeholder={t('static', 'forms.namePlaceholder')} className={fieldClass} />
                                     <FieldError className="text-[0.72rem] text-destructive" />
                                 </TextField>
 
@@ -72,7 +74,7 @@ export function CarInquiryModal({ car, isOpen, onOpenChange }: Props) {
                                     onChange={(v) => setData('email', v)}
                                     className="flex flex-col gap-1"
                                 >
-                                    <Input type="email" placeholder="E-mail adresa *" className={fieldClass} />
+                                    <Input type="email" placeholder={t('static', 'forms.emailPlaceholder')} className={fieldClass} />
                                     <FieldError className="text-[0.72rem] text-destructive" />
                                 </TextField>
 
@@ -81,7 +83,7 @@ export function CarInquiryModal({ car, isOpen, onOpenChange }: Props) {
                                     onChange={(v) => setData('phone', v)}
                                     className="flex flex-col gap-1"
                                 >
-                                    <Input type="tel" placeholder="Broj telefona *" className={fieldClass} />
+                                    <Input type="tel" placeholder={t('static', 'forms.phonePlaceholder')} className={fieldClass} />
                                     <FieldError className="text-[0.72rem] text-destructive" />
                                 </TextField>
 
@@ -91,7 +93,7 @@ export function CarInquiryModal({ car, isOpen, onOpenChange }: Props) {
                                     className="flex flex-col gap-1"
                                 >
                                     <TextArea
-                                        placeholder="Poruka"
+                                        placeholder={t('static', 'carInquiry.messagePlaceholder')}
                                         rows={4}
                                         className={`${fieldClass} resize-none`}
                                     />
@@ -102,7 +104,7 @@ export function CarInquiryModal({ car, isOpen, onOpenChange }: Props) {
                                     <Button
                                         type="submit"
                                         color="orange"
-                                        label={processing ? 'SLANJE...' : 'POŠALJI UPIT →'}
+                                        label={processing ? t('static', 'forms.sendingCta') : t('static', 'forms.submitCta')}
                                         disabled={processing}
                                         onClick={() => {}}
                                         extendClass="w-full justify-center uppercase"

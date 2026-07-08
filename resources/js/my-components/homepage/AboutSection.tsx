@@ -1,10 +1,13 @@
 import { Link } from '@inertiajs/react';
 
+import { usePageText } from '@/hooks/usePageText';
 import { Button } from '@/my-components/shared/Button';
 import { SectionEyebrow } from '@/my-components/shared/SectionEyebrow';
 import { Paragraph } from '@/my-components/typography/Paragraph';
 
 export default function AboutSection() {
+    const { t } = usePageText();
+
     return (
         <section className="bg-bg-surface py-20">
             <div className="mx-auto max-w-7xl px-6 lg:px-12">
@@ -14,7 +17,7 @@ export default function AboutSection() {
                     <div className="relative aspect-[4/3] w-full overflow-hidden bg-bg-surface-raised">
                         <div className="absolute inset-0 flex items-center justify-center">
                             <Paragraph level="p3" extendClass="text-text-muted">
-                                Slika salona
+                                {t('static', 'about.imagePlaceholder')}
                             </Paragraph>
                         </div>
                         {/* Gold accent corner */}
@@ -23,27 +26,26 @@ export default function AboutSection() {
 
                     {/* Right — content */}
                     <div className="flex flex-col gap-6">
-                        <SectionEyebrow label="O nama" title="Vaš pouzdani partner za premium vozila" />
+                        <SectionEyebrow
+                            label={t('static', 'about.eyebrow')}
+                            title={t('static', 'about.title')}
+                        />
 
                         <Paragraph level="p1" extendClass="text-text-secondary">
-                            Auto Lider osnovan je s jednim ciljem — pružiti klijentima
-                            na Otoku Krku i šire pristup vrhunskim europskim automobilima
-                            bez kompromisa u kvaliteti ili usluzi.
+                            {t('static', 'about.paragraph1')}
                         </Paragraph>
 
                         <Paragraph level="p2" extendClass="text-text-secondary">
-                            Kao ovlašteni uvoznik premium brendova, svako vozilo prolazi
-                            kroz rigoroznu provjeru prije isporuke. Naš tim brine o
-                            svakom detalju — od prvog upita do predaje ključeva.
+                            {t('static', 'about.paragraph2')}
                         </Paragraph>
 
                         {/* Badge */}
                         <div className="flex items-center gap-3 border border-gold-border bg-gold-subtle px-5 py-3 w-fit">
                             <span className="font-display text-[1.05rem] font-semibold text-gold">
-                                #1
+                                {t('static', 'about.badgeNumber')}
                             </span>
                             <Paragraph level="p3" extendClass="text-gold uppercase tracking-[0.12em]">
-                                Audi uvoznik na Otoku Krku
+                                {t('static', 'about.badgeText')}
                             </Paragraph>
                         </div>
 
@@ -51,14 +53,14 @@ export default function AboutSection() {
                         <div className="flex flex-wrap gap-4 pt-2">
                             <Link href="/cars">
                                 <Button
-                                    label="POGLEDAJ PONUDU"
+                                    label={t('static', 'actions.viewOffer')}
                                     color="orange"
                                     onClick={() => {}}
                                 />
                             </Link>
                             <Link href="/contact">
                                 <Button
-                                    label="KONTAKTIRAJ NAS"
+                                    label={t('static', 'actions.contactUs')}
                                     color="blue"
                                     onClick={() => {}}
                                 />
