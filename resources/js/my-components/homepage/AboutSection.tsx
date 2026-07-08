@@ -1,7 +1,7 @@
 import { Link } from '@inertiajs/react';
 
 import { Button } from '@/my-components/shared/Button';
-import { Heading } from '@/my-components/typography/Heading';
+import { SectionEyebrow } from '@/my-components/shared/SectionEyebrow';
 import { Paragraph } from '@/my-components/typography/Paragraph';
 
 export default function AboutSection() {
@@ -23,18 +23,7 @@ export default function AboutSection() {
 
                     {/* Right — content */}
                     <div className="flex flex-col gap-6">
-                        <div>
-                            <Paragraph
-                                level="p4"
-                                extendClass="text-gold uppercase tracking-[0.25em] mb-3 flex items-center gap-3"
-                            >
-                                <span className="inline-block h-px w-6 bg-gold" />
-                                O nama
-                            </Paragraph>
-                            <Heading level="h2" extendClass="mb-5">
-                                Vaš pouzdani partner za premium vozila
-                            </Heading>
-                        </div>
+                        <SectionEyebrow label="O nama" title="Vaš pouzdani partner za premium vozila" />
 
                         <Paragraph level="p1" extendClass="text-text-secondary">
                             Auto Lider osnovan je s jednim ciljem — pružiti klijentima

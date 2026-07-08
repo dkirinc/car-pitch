@@ -1,26 +1,16 @@
 import { Drawer } from '@heroui/react';
-import { Link, router, usePage } from '@inertiajs/react';
-import { Ticket } from 'lucide-react';
+import { Link } from '@inertiajs/react';
 
-import { useMobileNavigation } from '@/hooks/use-mobile-navigation';
-import { usePageText } from '@/hooks/usePageText';
-import { logout } from '@/routes';
-import { type User } from '@/types';
-
+import logo from '../../../assets/logo.png';
 import { Paragraph } from '../typography/Paragraph';
 
 const NAV_ITEMS = [
-    { name: 'Excursions', href: '/excursions' },
-    { name: 'Calendar', href: '/calendar' },
-    { name: 'About', href: '/about' },
-    { name: 'Contact', href: '/contact' },
+    { label: 'Početna', href: '/' },
+    { label: 'Vozila', href: '/cars' },
+    { label: 'O nama', href: '/about' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'Kontakt', href: '/contact' },
 ];
-
-type AuthUser = User & { can_access_admin?: boolean };
-
-type PageProps = {
-    auth: { user: AuthUser | null };
-};
 
 type Props = {
     isOpen: boolean;
@@ -28,135 +18,47 @@ type Props = {
 };
 
 export default function MobileMenu({ isOpen, onOpenChange }: Props) {
-    const { t } = usePageText();
-    const { auth } = usePage<PageProps>().props;
-    const cleanup = useMobileNavigation();
-
     const close = () => onOpenChange(false);
-
-    const handleLogout = () => {
-        cleanup();
-        router.flushAll();
-    };
 
     return (
         <Drawer isOpen={isOpen} onOpenChange={onOpenChange}>
             <Drawer.Backdrop>
                 <Drawer.Content placement="left">
-                    <Drawer.Dialog className="w-full bg-white sm:max-w-sm">
-                        <Drawer.Header className="flex items-start justify-between">
+                    <Drawer.Dialog className="w-full bg-bg-surface sm:max-w-sm">
+                        <Drawer.Header className="flex items-center justify-between border-b border-border-default px-6 py-4">
                             <Link href="/" onClick={close}>
-                                <img
-                                    src="/images/krkboat-logo-resized.png"
-                                    alt=""
-                                    className="size-10"
-                                />
+                                <img src={logo} alt="Auto Lider" className="h-8 w-auto" />
                             </Link>
-                            <Drawer.CloseTrigger className="text-foreground" />
+                            <Drawer.CloseTrigger className="text-text-secondary transition-colors hover:text-text-primary" />
                         </Drawer.Header>
-                        <Drawer.Body className="flex flex-col gap-6">
-                            {/* Main nav */}
+
+                        <Drawer.Body className="flex flex-col px-6 py-6">
                             <nav className="flex flex-col">
                                 {NAV_ITEMS.map((item) => (
                                     <Link
-                                        key={item.name}
+                                        key={item.href}
                                         href={item.href}
                                         onClick={close}
-                                        className="border-b border-gray-200 py-3 last:border-b-0"
+                                        className="border-b border-border-default py-4 last:border-b-0"
                                     >
                                         <Paragraph
                                             level="p2"
-                                            extendClass="font-medium"
+                                            extendClass="font-semibold text-text-secondary uppercase tracking-[0.12em] transition-colors hover:text-gold"
                                         >
-                                            {item.name}
+                                            {item.label}
                                         </Paragraph>
                                     </Link>
                                 ))}
                             </nav>
 
-                            {/* Account */}
-                            <div className="flex flex-col gap-2">
-                                <Paragraph
-                                    level="p3"
-                                    extendClass="font-semibold text-muted-foreground uppercase tracking-wide"
-                                >
-                                    {t('static', 'nav.account')}
-                                </Paragraph>
-                                <nav className="flex flex-col">
-                                    {auth.user ? (
-                                        <>
-                                            <Link
-                                                href="/profile"
-                                                onClick={close}
-                                                className="py-2"
-                                            >
-                                                <Paragraph level="p2">
-                                                    {t('static', 'nav.myProfile')}
-                                                </Paragraph>
-                                            </Link>
-                                            <Link
-                                                href="/reservations"
-                                                onClick={close}
-                                                className="py-2"
-                                            >
-                                                <Paragraph level="p2">
-                                                    {t('static', 'nav.myTrips')}
-                                                </Paragraph>
-                                            </Link>
-                                            {auth.user.can_access_admin && (
-                                                <a
-                                                    href="/admin"
-                                                    className="py-2"
-                                                >
-                                                    <Paragraph level="p2">
-                                                        {t('static', 'nav.adminPanel')}
-                                                    </Paragraph>
-                                                </a>
-                                            )}
-                                            <Link
-                                                href={logout()}
-                                                as="button"
-                                                onClick={handleLogout}
-                                                className="py-2 text-left"
-                                            >
-                                                <Paragraph level="p2">
-                                                    {t('static', 'nav.logout')}
-                                                </Paragraph>
-                                            </Link>
-                                        </>
-                                    ) : (
-                                        <Link
-                                            href="/login"
-                                            onClick={close}
-                                            className="py-2"
-                                        >
-                                            <Paragraph level="p2">
-                                                {t('static', 'nav.login')}
-                                            </Paragraph>
-                                        </Link>
-                                    )}
-                                </nav>
-                            </div>
-
-                            {/* Top CTAs */}
-                            <div className="flex flex-col gap-2">
+                            <div className="mt-8">
                                 <Link
-                                    href="/calendar"
+                                    href="/contact"
                                     onClick={close}
-                                    className="bg-primary-blue flex items-center justify-center gap-2 rounded-xl py-3"
+                                    className="block w-full bg-gold py-3 text-center text-[0.78rem] font-bold uppercase tracking-[0.15em] text-bg-base transition-colors hover:bg-gold-dark"
                                 >
-                                    <Ticket className="size-4 text-white" />
-                                    <Paragraph
-                                        level="p3"
-                                        extendClass="text-white font-medium"
-                                    >
-                                        {t('static', 'nav.bookTrip')}
-                                    </Paragraph>
+                                    Kontaktiraj nas
                                 </Link>
-                            </div>
-
-                            <div className="mt-auto flex flex-col gap-4 pt-6">
-                                <div className="h-px w-full bg-gray-200" />
                             </div>
                         </Drawer.Body>
                     </Drawer.Dialog>

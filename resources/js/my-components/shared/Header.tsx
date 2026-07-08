@@ -1,9 +1,7 @@
-import { Link, router } from '@inertiajs/react';
-import { CalendarSearch, Menu as MenuIcon, Ticket } from 'lucide-react';
+import { Link } from '@inertiajs/react';
+import { Menu as MenuIcon } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { useEffect, useState } from 'react';
-
-import { usePageText } from '@/hooks/usePageText';
 
 import logo from '../../../assets/logo.png';
 import { Paragraph } from '../typography/Paragraph';
@@ -11,10 +9,10 @@ import { Paragraph } from '../typography/Paragraph';
 const SCROLL_THRESHOLD = 10;
 
 const NAV_ITEMS = [
-    { name: 'Prodaja Vozila', href: '/excursions' },
-    { name: 'Blog', href: '/calendar' },
-    { name: 'O Nama', href: '/about' },
-    { name: 'Kontakt', href: '/contact' },
+    { label: 'Vozila', href: '/cars' },
+    { label: 'O nama', href: '/about' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'Kontakt', href: '/contact' },
 ];
 
 type Props = {
@@ -22,12 +20,10 @@ type Props = {
 };
 
 const Header = ({ onMobileMenuToggle }: Props) => {
-    const { t } = usePageText();
     const prefersReducedMotion = useReducedMotion();
 
     const [isScrolled, setIsScrolled] = useState(
-        () =>
-            typeof window !== 'undefined' && window.scrollY > SCROLL_THRESHOLD,
+        () => typeof window !== 'undefined' && window.scrollY > SCROLL_THRESHOLD,
     );
     const [hoveredKey, setHoveredKey] = useState<string | null>(null);
 
@@ -45,118 +41,84 @@ const Header = ({ onMobileMenuToggle }: Props) => {
     return (
         <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4">
             <nav
-                aria-label="Global"
+                aria-label="Navigacija"
                 className={`mx-auto flex max-w-[1400px] items-center justify-between rounded-xl border px-6 py-3 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 ${
                     isScrolled
-                        ? 'border-white/50 bg-white/60 shadow-lg backdrop-blur-md'
+                        ? 'border-white/10 bg-bg-base/80 shadow-lg backdrop-blur-md'
                         : 'border-transparent bg-transparent'
                 }`}
             >
-                <div className="flex w-fit flex-1 content-center items-center gap-2 md:flex-1 md:justify-start">
+                {/* Logo */}
+                <div className="flex flex-1 items-center">
                     <Link href="/">
                         <motion.img
                             src={logo}
-                            alt=""
+                            alt="Auto Lider"
                             initial={false}
                             animate={{
-                                width: isScrolled ? 40 : 180,
-                                height: isScrolled ? 40 : 45,
+                                width: isScrolled ? 40 : 120,
+                                height: isScrolled ? 40 : 40,
                             }}
-                            whileHover={
-                                prefersReducedMotion
-                                    ? undefined
-                                    : { rotate: [0, -8, 7, -4, 3, -1, 0] }
-                            }
                             transition={
                                 prefersReducedMotion
                                     ? { duration: 0 }
                                     : {
-                                          width: {
-                                              type: 'spring',
-                                              stiffness: 350,
-                                              damping: 90,
-                                          },
-                                          height: {
-                                              type: 'spring',
-                                              stiffness: 350,
-                                              damping: 90,
-                                          },
-                                          rotate: {
-                                              duration: 0.45,
-                                              ease: 'easeInOut',
-                                          },
+                                          width: { type: 'spring', stiffness: 350, damping: 90 },
+                                          height: { type: 'spring', stiffness: 350, damping: 90 },
                                       }
                             }
+                            className="object-contain"
                         />
                     </Link>
                 </div>
 
+                {/* Desktop nav */}
                 <div
-                    className="relative hidden md:flex md:flex-1"
+                    className="relative hidden flex-1 justify-center md:flex"
                     onMouseLeave={() => setHoveredKey(null)}
                 >
                     {NAV_ITEMS.map((item) => (
                         <Link
-                            key={item.name}
+                            key={item.label}
                             href={item.href}
-                            onMouseEnter={() => setHoveredKey(item.name)}
-                            className="relative rounded-xl px-4 py-1.5"
+                            onMouseEnter={() => setHoveredKey(item.label)}
+                            className="relative rounded-lg px-4 py-1.5"
                         >
-                            {hoveredKey === item.name && (
+                            {hoveredKey === item.label && (
                                 <motion.span
                                     layoutId="navHoverPill"
                                     aria-hidden="true"
-                                    transition={{
-                                        type: 'spring',
-                                        stiffness: 380,
-                                        damping: 32,
-                                    }}
-                                    className="absolute inset-0 -z-10 rounded-xl border-b-2 border-gold shadow-sm"
+                                    transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                                    className="absolute inset-0 -z-10 rounded-lg border-b-2 border-gold"
                                 />
                             )}
-                            <Paragraph
-                                level="p1"
-                                extendClass="text-muted-foreground"
-                            >
-                                {item.name.toUpperCase()}
+                            <Paragraph level="p3" extendClass="text-text-secondary font-semibold uppercase tracking-[0.1em]">
+                                {item.label}
                             </Paragraph>
                         </Link>
                     ))}
                 </div>
 
-                <div className="flex gap-2 md:hidden">
-                    <button
-                        type="button"
-                        onClick={() => router.visit('/calendar')}
-                        aria-label={t('static', 'nav.bookTrip')}
-                        className="flex items-center rounded-md bg-primary p-2"
+                {/* Desktop CTA */}
+                <div className="hidden flex-1 items-center justify-end md:flex">
+                    <Link
+                        href="/contact"
+                        className="border border-gold-border px-5 py-2 text-[0.75rem] font-bold uppercase tracking-[0.15em] text-gold transition-colors duration-200 hover:border-gold/60 hover:bg-gold-subtle"
                     >
-                        <CalendarSearch
-                            aria-hidden="true"
-                            size={14}
-                            color="white"
-                        />
-                    </button>
+                        Kontaktiraj nas
+                    </Link>
+                </div>
+
+                {/* Mobile menu button */}
+                <div className="flex items-center gap-3 md:hidden">
                     <button
                         type="button"
                         onClick={() => onMobileMenuToggle(true)}
-                        aria-label={t('static', 'nav.openMenu')}
+                        aria-label="Otvori izbornik"
+                        className="text-text-primary"
                     >
-                        <MenuIcon
-                            aria-hidden="true"
-                            className="size-6 text-foreground"
-                        />
+                        <MenuIcon aria-hidden="true" className="size-6" />
                     </button>
-                </div>
-
-                <div className="hidden content-center items-center justify-center gap-4 md:flex md:flex-1 md:justify-end">
-                    <Link
-                        href="/calendar"
-                        className="hidden items-center gap-2 rounded-sm bg-primary p-2 text-sm text-white lg:flex"
-                    >
-                        <Ticket className="size-4" />
-                        {t('static', 'nav.bookTrip')}
-                    </Link>
                 </div>
             </nav>
         </header>

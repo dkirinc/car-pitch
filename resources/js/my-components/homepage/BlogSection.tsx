@@ -1,6 +1,7 @@
 import { Link } from '@inertiajs/react';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
 
+import { NavArrows } from '@/my-components/shared/NavArrows';
+import { SectionEyebrow } from '@/my-components/shared/SectionEyebrow';
 import { Heading } from '@/my-components/typography/Heading';
 import { Paragraph } from '@/my-components/typography/Paragraph';
 import type { IBlogPost } from '@/types/models';
@@ -103,35 +104,8 @@ export default function BlogSection({ posts }: Props) {
             <div className="mx-auto max-w-7xl px-6 lg:px-12">
                 {/* Section header */}
                 <div className="mb-10 flex items-end justify-between">
-                    <div>
-                        <Paragraph
-                            level="p4"
-                            extendClass="text-gold uppercase tracking-[0.25em] mb-3 flex items-center gap-3"
-                        >
-                            <span className="inline-block h-px w-6 bg-gold" />
-                            Blog
-                        </Paragraph>
-                        <Heading level="h2">Najnovije objave</Heading>
-                    </div>
-
-                    <div className="flex items-center gap-4">
-                        <div className="flex gap-2">
-                            <button
-                                type="button"
-                                className="flex size-10 items-center justify-center border border-border-default text-text-secondary transition-colors duration-200 hover:border-gold-border hover:text-gold"
-                                aria-label="Prethodno"
-                            >
-                                <ArrowLeft className="size-4" />
-                            </button>
-                            <button
-                                type="button"
-                                className="flex size-10 items-center justify-center border border-border-default text-text-secondary transition-colors duration-200 hover:border-gold-border hover:text-gold"
-                                aria-label="Sljedeće"
-                            >
-                                <ArrowRight className="size-4" />
-                            </button>
-                        </div>
-                    </div>
+                    <SectionEyebrow label="Blog" title="Najnovije objave" />
+                    <NavArrows />
                 </div>
 
                 {/* Asymmetric grid */}

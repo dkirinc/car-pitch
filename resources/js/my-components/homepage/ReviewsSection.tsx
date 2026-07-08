@@ -1,4 +1,4 @@
-import { Heading } from '@/my-components/typography/Heading';
+import { SectionEyebrow } from '@/my-components/shared/SectionEyebrow';
 import { Paragraph } from '@/my-components/typography/Paragraph';
 import type { IReview } from '@/types/models';
 
@@ -59,14 +59,7 @@ export default function ReviewsSection({ reviews }: Props) {
         <section className="bg-bg-surface py-20">
             <div className="mx-auto max-w-7xl px-6 lg:px-12">
                 <div className="mb-10">
-                    <Paragraph
-                        level="p4"
-                        extendClass="text-gold uppercase tracking-[0.25em] mb-3 flex items-center gap-3"
-                    >
-                        <span className="inline-block h-px w-6 bg-gold" />
-                        Recenzije
-                    </Paragraph>
-                    <Heading level="h2">Zadovoljne stranke</Heading>
+                    <SectionEyebrow label="Recenzije" title="Zadovoljne stranke" />
                 </div>
 
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
