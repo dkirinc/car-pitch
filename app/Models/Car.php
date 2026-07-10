@@ -29,6 +29,11 @@ class Car extends Model implements HasMedia
     /** @use HasFactory<CarFactory> */
     use HasFactory, InteractsWithMedia, SoftDeletes;
 
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('images')->useDisk('public');

@@ -18,6 +18,20 @@ export interface ICar {
     thumbnail_url: string;
 }
 
+export interface ICarDetail extends ICar {
+    description: string;
+    video_url: string | null;
+    engine: string;
+    power: number;
+    exterior_color: string;
+    interior_color: string;
+    doors: number;
+    seats: number;
+    registration_date: string | null;
+    vin_masked: string;
+    equipment: string[];
+}
+
 export interface IStats {
     cars_sold: number;
     brands_count: number;
@@ -43,4 +57,9 @@ export interface IBlogPost {
     car: {
         brand: { name: string } | null;
     } | null;
+}
+
+export interface IBlogPostDetail extends IBlogPost {
+    content: string;
+    gallery: string[];
 }

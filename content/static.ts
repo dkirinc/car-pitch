@@ -131,6 +131,31 @@ export const staticText = {
         emptyState: 'Trenutno nema vozila u ovoj kategoriji.',
     },
 
+    // ─── Car detail page ─────────────────────────────────────────────────────────
+    carDetail: {
+        backCta: 'Natrag',
+        basicInfoTitle: 'Osnovni podaci',
+        yearLabel: 'Godište',
+        mileageLabel: 'Kilometraža',
+        fuelLabel: 'Gorivo',
+        transmissionLabel: 'Mjenjač',
+        priceLabel: 'Cijena',
+        contactTitle: 'Kontakt',
+        aboutTitle: 'O vozilu',
+        videoTitle: 'Video pregled',
+        videoPlaceholder: 'Video pregled uskoro dostupan.',
+        technicalTitle: 'Tehnički podaci',
+        engineLabel: 'Motor',
+        powerLabel: 'Snaga',
+        colorLabel: 'Boja',
+        interiorLabel: 'Unutrašnjost',
+        doorsLabel: 'Vrata',
+        seatsLabel: 'Sjedala',
+        registrationLabel: 'Registracija',
+        vinLabel: 'VIN',
+        equipmentTitle: 'Oprema',
+    },
+
     // ─── Homepage: About (O nama) ───────────────────────────────────────────────
     about: {
         imagePlaceholder: 'Slika salona',
@@ -245,6 +270,16 @@ export const staticText = {
             'Pratite naše najnovije isporuke, novosti iz svijeta premium automobila i savjete za kupnju vozila.',
         imagePlaceholder: 'Slika objave',
         emptyState: 'Trenutno nema objavljenih članaka.',
+    },
+
+    // ─── Blog post detail page ───────────────────────────────────────────────────
+    blogDetail: {
+        backCta: 'Natrag',
+        galleryTitle: 'Galerija',
+        ctaTitle: 'Zainteresirani ste za naša vozila?',
+        ctaSubtitle:
+            'Kontaktirajte nas i saznajte više o našoj ponudi premium automobila.',
+        ctaButton: 'KONTAKTIRAJTE NAS',
     },
 
     // ─── Homepage: Reviews (Zadovoljne stranke) ─────────────────────────────────

@@ -6,6 +6,7 @@ use App\Models\BlogPost;
 use Carbon\CarbonInterface;
 use Inertia\Inertia;
 use Inertia\Response;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class BlogController extends Controller
 {
@@ -35,6 +36,31 @@ class BlogController extends Controller
 
         return Inertia::render('blogs', [
             'posts' => $posts,
+        ]);
+    }
+
+    public function show(BlogPost $blogPost): Response
+    {
+        abort_unless($blogPost->is_published, 404);
+
+        $blogPost->load('car.brand');
+
+        return Inertia::render('blog', [
+            'post' => [
+                'id' => $blogPost->id,
+                'title' => $blogPost->title,
+                'slug' => $blogPost->slug,
+                'excerpt' => $blogPost->excerpt,
+                'content' => $blogPost->content,
+                'published_at' => $this->formatDate($blogPost->published_at),
+                'cover_url' => $blogPost->getFirstMediaUrl('cover'),
+                'gallery' => $blogPost->getMedia('gallery')
+                    ->map(fn (Media $media) => $media->getUrl())
+                    ->all(),
+                'car' => $blogPost->car ? [
+                    'brand' => $blogPost->car->brand ? ['name' => $blogPost->car->brand->name] : null,
+                ] : null,
+            ],
         ]);
     }
 

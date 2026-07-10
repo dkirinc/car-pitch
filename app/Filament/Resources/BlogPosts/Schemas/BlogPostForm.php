@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\BlogPosts\Schemas;
 
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
@@ -38,9 +39,8 @@ class BlogPostForm
                             ->required()
                             ->rows(2)
                             ->label('Kratki opis'),
-                        Textarea::make('content')
+                        RichEditor::make('content')
                             ->required()
-                            ->rows(8)
                             ->label('Sadržaj')
                             ->columnSpanFull(),
                     ]),
@@ -64,6 +64,17 @@ class BlogPostForm
                             ->image()
                             ->maxFiles(1)
                             ->label('Naslovna slika'),
+                    ]),
+
+                Section::make('Galerija')
+                    ->schema([
+                        SpatieMediaLibraryFileUpload::make('gallery')
+                            ->collection('gallery')
+                            ->multiple()
+                            ->reorderable()
+                            ->image()
+                            ->maxFiles(20)
+                            ->label('Fotografije galerije'),
                     ]),
             ]);
     }
