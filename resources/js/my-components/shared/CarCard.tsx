@@ -98,14 +98,14 @@ export default function CarCard({ car }: { car: ICar }) {
                 </div>
             </Link>
 
-            <div className="px-5 pb-5">
+            {/*  <div className="px-5 pb-5">
                 <Button
                     label={t('static', 'forms.submitCta')}
                     color="blue"
                     onClick={() => setInquiryOpen(true)}
                     extendClass="w-full justify-center"
                 />
-            </div>
+            </div> */}
 
             <CarInquiryModal
                 car={car}

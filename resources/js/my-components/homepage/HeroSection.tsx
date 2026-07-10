@@ -76,22 +76,34 @@ export default function HeroSection() {
                             level="h0"
                             extendClass="text-text-primary mb-6 block"
                         >
-                            {t('static', `hero.slides.${activeIndex}.headingLine1`)}
+                            {t(
+                                'static',
+                                `hero.slides.${activeIndex}.headingLine1`,
+                            )}
                             <br />
-                            {t('static', `hero.slides.${activeIndex}.headingLine2`)}
+                            {t(
+                                'static',
+                                `hero.slides.${activeIndex}.headingLine2`,
+                            )}
                         </Heading>
 
                         <Paragraph
                             level="p1"
                             extendClass="text-text-secondary mb-10 max-w-lg"
                         >
-                            {t('static', `hero.slides.${activeIndex}.description`)}
+                            {t(
+                                'static',
+                                `hero.slides.${activeIndex}.description`,
+                            )}
                         </Paragraph>
 
                         <div className="flex flex-wrap items-center gap-6">
                             <Link href={SLIDES[activeIndex].ctaHref}>
                                 <Button
-                                    label={t('static', `hero.slides.${activeIndex}.ctaLabel`)}
+                                    label={t(
+                                        'static',
+                                        `hero.slides.${activeIndex}.ctaLabel`,
+                                    )}
                                     color="orange"
                                     onClick={() => {}}
                                 />
@@ -116,20 +128,6 @@ export default function HeroSection() {
                     </motion.div>
                 </AnimatePresence>
             </div>
-
-            <button
-                type="button"
-                onClick={scrollToContent}
-                className="absolute bottom-8 left-1/2 flex -translate-x-1/2 cursor-pointer flex-col items-center gap-2 text-text-muted transition-colors duration-200 hover:text-gold"
-            >
-                <Paragraph
-                    level="p4"
-                    extendClass="uppercase tracking-[0.2em] text-inherit"
-                >
-                    {t('static', 'hero.scrollLabel')}
-                </Paragraph>
-                <ChevronDown className="size-4 animate-bounce" />
-            </button>
         </section>
     );
 }

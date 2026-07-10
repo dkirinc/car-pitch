@@ -1,3 +1,4 @@
+import { usePage } from '@inertiajs/react';
 import { useMemo, useState } from 'react';
 
 import { usePageText } from '@/hooks/usePageText';
@@ -36,8 +37,17 @@ function FilterChip({ label, active, onClick }: FilterChipProps) {
 
 export default function CarsListSection({ cars, brands }: Props) {
     const { t } = usePageText();
+    const { url } = usePage();
     const [selectedBrandSlug, setSelectedBrandSlug] = useState<string | null>(
-        null,
+        () => {
+            const brandSlug = new URLSearchParams(
+                url.split('?')[1],
+            ).get('brand');
+
+            return brands.some((brand) => brand.slug === brandSlug)
+                ? brandSlug
+                : null;
+        },
     );
 
     const filteredCars = useMemo(

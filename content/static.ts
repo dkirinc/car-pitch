@@ -114,7 +114,7 @@ export const staticText = {
         imagePlaceholder: 'Slika vozila',
         badgeNew: 'Novo',
         badgeAvailable: 'Dostupno',
-        priceOnRequest: 'Od upita',
+        priceOnRequest: 'Na upit',
         emptyState: 'Trenutno nema istaknutih vozila u ponudi.',
     },
 

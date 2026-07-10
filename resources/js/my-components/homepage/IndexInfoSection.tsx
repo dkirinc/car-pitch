@@ -1,3 +1,4 @@
+import { Link } from '@inertiajs/react';
 import { useEffect, useRef, useState } from 'react';
 
 import { usePageText } from '@/hooks/usePageText';
@@ -105,12 +106,13 @@ export default function IndexInfoSection({ stats, brands }: Props) {
                     </Paragraph>
                     <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-5">
                         {brands.map((brand) => (
-                            <span
+                            <Link
                                 key={brand.id}
-                                className="cursor-default font-display text-[1.15rem] font-semibold text-text-secondary transition-colors duration-200 hover:text-gold"
+                                href={`/cars?brand=${brand.slug}`}
+                                className="font-display text-[1.15rem] font-semibold text-text-secondary transition-colors duration-200 hover:text-gold"
                             >
                                 {brand.name}
-                            </span>
+                            </Link>
                         ))}
                     </div>
                 </div>
