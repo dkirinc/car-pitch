@@ -144,6 +144,92 @@ export const staticText = {
         badgeText: 'Audi uvoznik na Otoku Krku',
     },
 
+    // ─── About page (O nama) ─────────────────────────────────────────────────────
+    aboutPage: {
+        eyebrow: 'O nama',
+        headingLine1: 'Vaš pouzdani',
+        headingLine2: 'partner za',
+        headingLine3: 'premium vozila',
+        locationLabel: 'Krk, Hrvatska',
+        hoursLabel: 'Dostupni 7 dana u tjednu',
+
+        stats: [
+            { value: '18+', label: 'Godina iskustva' },
+            { value: '500+', label: 'Vozila godišnje' },
+            { value: '2000+', label: 'Zadovoljnih kupaca' },
+            { value: '#1', label: 'Audi uvoznik' },
+        ],
+
+        introTitle: 'Osnivanje s ciljem — odličnost bez kompromisa',
+        introParagraph1:
+            'Adria Lider iz Krka ovlaštena je tvrtka za uvoz i prodaju vozila. Uvozimo osobna i N1 vozila. Prodaja rabljenih automobila, uvoz automobila i riješena kompletna papirologija — mi nudimo princip "ključ u ruke"!',
+        introParagraph2:
+            'Realiziramo financiranje kupnje automobila putem leasinga ili kredita. Prepustite brigu nabave nama, a mi vam dovozimo vaš auto iz snova do kućnog praga!',
+
+        timelineEyebrow: 'Naša priča',
+        timeline: [
+            {
+                year: '2005',
+                title: 'Osnivanje',
+                description:
+                    'Adria Lider osnovan je na otoku Krku s vizijom dovođenja premium vozila bliže hrvatskim kupcima.',
+            },
+            {
+                year: '2010',
+                title: 'Ovlašteni uvoznik',
+                description:
+                    'Stječemo status ovlaštenog uvoznika, što nam omogućuje direktne uvozne kanale i povoljnije uvjete.',
+            },
+            {
+                year: '2016',
+                title: 'Ekspanzija ponude',
+                description:
+                    'Proširujemo ponudu na BMW, Volkswagen i Volvo uz već etabliranu Audi liniju vozila.',
+            },
+            {
+                year: '2023',
+                title: 'Regionalni lider',
+                description:
+                    'Postajemo #1 Audi uvoznik u regiji s više od 500 zadovoljnih kupaca godišnje.',
+            },
+        ],
+
+        servicesEyebrow: 'Što nudimo',
+        servicesTitle: 'Kompletna usluga od odabira do predaje ključeva',
+        services: [
+            {
+                title: 'Uvoz vozila',
+                description:
+                    'Uvozimo osobna i N1 vozila iz cijele Europe. Kompletna papirologija — princip ključ u ruke.',
+            },
+            {
+                title: 'Leasing & kredit',
+                description:
+                    'Realiziramo financiranje kupnje automobila putem leasinga ili kredita prema vašim mogućnostima.',
+            },
+            {
+                title: 'Jamstvo kvalitete',
+                description:
+                    'Svako vozilo prolazi detaljnu tehničku provjeru. Prodajemo isključivo vozila bez skrivenih nedostataka.',
+            },
+            {
+                title: 'Premium marke',
+                description:
+                    'Specijalizirani smo za Audi, BMW, Volkswagen i Volvo — vrhunske europske marke u jednom salonu.',
+            },
+        ],
+
+        quote:
+            'Prepustite brigu nabave nama, a mi vam dovozimo vaš auto iz snova do kućnog praga.',
+        quoteAttribution: 'Adria Lider, od 2005.',
+
+        ctaTitle: 'Pronađite vaše idealno vozilo',
+        ctaDescription:
+            'Pregledajte našu aktualnu ponudu ili nas kontaktirajte za individualni uvoz prema vašim željama.',
+        ctaPrimary: 'Pogledaj vozila →',
+        ctaSecondary: 'Kontaktirajte nas',
+    },
+
     // ─── Homepage: Blog (Najnovije objave) ──────────────────────────────────────
     blog: {
         eyebrow: 'Blog',
