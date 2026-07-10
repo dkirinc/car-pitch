@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BlogPost;
-use Illuminate\Support\Carbon;
+use Carbon\CarbonInterface;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -38,7 +38,7 @@ class BlogController extends Controller
         ]);
     }
 
-    private function formatDate(?Carbon $date): ?string
+    private function formatDate(?CarbonInterface $date): ?string
     {
         if (! $date) {
             return null;

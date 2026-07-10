@@ -29,7 +29,7 @@ export default function Footer() {
     const NAV_LINKS = [
         { label: t('static', 'footer.navProdajaVozila'), href: '/cars' },
         { label: t('static', 'nav.oNama'), href: '/about' },
-        { label: t('static', 'nav.blog'), href: '/blog' },
+        { label: t('static', 'nav.blog'), href: '/blogs' },
         { label: t('static', 'nav.kontakt'), href: '/contact' },
     ];
 

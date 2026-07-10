@@ -239,6 +239,14 @@ export const staticText = {
         viewAllCta: 'Pogledaj sve objave →',
     },
 
+    // ─── Blogs page (Najnovije objave) ───────────────────────────────────────────
+    blogsPage: {
+        subtitle:
+            'Pratite naše najnovije isporuke, novosti iz svijeta premium automobila i savjete za kupnju vozila.',
+        imagePlaceholder: 'Slika objave',
+        emptyState: 'Trenutno nema objavljenih članaka.',
+    },
+
     // ─── Homepage: Reviews (Zadovoljne stranke) ─────────────────────────────────
     reviews: {
         eyebrow: 'Recenzije',

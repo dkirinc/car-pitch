@@ -18,7 +18,7 @@ export default function MobileMenu({ isOpen, onOpenChange }: Props) {
         { label: t('static', 'nav.pocetna'), href: '/' },
         { label: t('static', 'nav.vozila'), href: '/cars' },
         { label: t('static', 'nav.oNama'), href: '/about' },
-        { label: t('static', 'nav.blog'), href: '/blog' },
+        { label: t('static', 'nav.blog'), href: '/blogs' },
         { label: t('static', 'nav.kontakt'), href: '/contact' },
     ];
 

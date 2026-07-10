@@ -1,6 +1,6 @@
 import { Link } from '@inertiajs/react';
 import { Menu as MenuIcon } from 'lucide-react';
-import { motion, useReducedMotion } from 'motion/react';
+import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 
 import { usePageText } from '@/hooks/usePageText';
@@ -20,7 +20,7 @@ const Header = ({ onMobileMenuToggle }: Props) => {
     const NAV_ITEMS = [
         { label: t('static', 'nav.vozila'), href: '/cars' },
         { label: t('static', 'nav.oNama'), href: '/about' },
-        { label: t('static', 'nav.blog'), href: '/blog' },
+        { label: t('static', 'nav.blog'), href: '/blogs' },
         { label: t('static', 'nav.kontakt'), href: '/contact' },
     ];
 

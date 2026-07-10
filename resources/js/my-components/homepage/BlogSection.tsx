@@ -143,7 +143,7 @@ export default function BlogSection({ posts }: Props) {
                 {/* Footer link */}
                 <div className="mt-10 flex justify-center">
                     <Link
-                        href="/blog"
+                        href="/blogs"
                         className="text-[0.78rem] font-bold tracking-[0.15em] text-gold uppercase underline-offset-4 hover:underline"
                     >
                         {t('static', 'blog.viewAllCta')}
