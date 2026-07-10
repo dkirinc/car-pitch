@@ -9,10 +9,11 @@ import { SectionEyebrow } from '@/my-components/shared/SectionEyebrow';
 import { Paragraph } from '@/my-components/typography/Paragraph';
 
 type FormData = {
+    type: 'import';
     name: string;
     email: string;
     phone: string;
-    message: string;
+    notes: string;
 };
 
 type SharedProps = {
@@ -40,10 +41,11 @@ export default function ContactSection() {
     const { flash } = usePage<SharedProps>().props;
 
     const { data, setData, post, processing, reset } = useForm<FormData>({
+        type: 'import',
         name: '',
         email: '',
         phone: '',
-        message: '',
+        notes: '',
     });
 
     useEffect(() => {
@@ -129,8 +131,8 @@ export default function ContactSection() {
                             </TextField>
 
                             <TextField
-                                value={data.message}
-                                onChange={(v) => setData('message', v)}
+                                value={data.notes}
+                                onChange={(v) => setData('notes', v)}
                                 className="flex flex-col gap-1"
                             >
                                 <TextArea

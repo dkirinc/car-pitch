@@ -20,6 +20,13 @@ type Props = {
 };
 
 function Welcome({ featuredCars, brands, stats, latestPosts, reviews }: Props) {
+    console.log('Welcome page props:', {
+        featuredCars,
+        brands,
+        stats,
+        latestPosts,
+        reviews,
+    });
     return (
         <>
             <Head title="Auto Lider — Premium vozila, Otok Krk" />

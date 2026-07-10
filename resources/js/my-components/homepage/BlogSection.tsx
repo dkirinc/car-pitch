@@ -1,7 +1,6 @@
 import { Link } from '@inertiajs/react';
 
 import { usePageText } from '@/hooks/usePageText';
-import { NavArrows } from '@/my-components/shared/NavArrows';
 import { SectionEyebrow } from '@/my-components/shared/SectionEyebrow';
 import { Heading } from '@/my-components/typography/Heading';
 import { Paragraph } from '@/my-components/typography/Paragraph';
@@ -16,7 +15,10 @@ function LargeBlogCard({ post }: { post: IBlogPost }) {
     const brandName = post.car?.brand?.name ?? null;
 
     return (
-        <Link href={`/blog/${post.slug}`} className="group relative block h-full min-h-[500px] overflow-hidden bg-bg-surface-raised">
+        <Link
+            href={`/blog/${post.slug}`}
+            className="group relative block h-full min-h-[500px] overflow-hidden bg-bg-surface-raised"
+        >
             {/* Image */}
             {post.cover_url ? (
                 <img
@@ -36,7 +38,7 @@ function LargeBlogCard({ post }: { post: IBlogPost }) {
             <div className="absolute inset-0 bg-gradient-to-t from-bg-base via-bg-base/60 to-transparent" />
 
             {/* Content at bottom */}
-            <div className="absolute bottom-0 left-0 right-0 p-6">
+            <div className="absolute right-0 bottom-0 left-0 p-6">
                 {brandName && (
                     <Paragraph
                         level="p4"
@@ -45,7 +47,10 @@ function LargeBlogCard({ post }: { post: IBlogPost }) {
                         {brandName}
                     </Paragraph>
                 )}
-                <Heading level="h3" extendClass="text-text-primary line-clamp-2">
+                <Heading
+                    level="h3"
+                    extendClass="text-text-primary line-clamp-2"
+                >
                     {post.title}
                 </Heading>
             </div>
@@ -72,7 +77,10 @@ function SmallBlogCard({ post }: { post: IBlogPost }) {
                     />
                 ) : (
                     <div className="absolute inset-0 flex items-center justify-center">
-                        <Paragraph level="p4" extendClass="text-text-muted text-center px-2">
+                        <Paragraph
+                            level="p4"
+                            extendClass="text-text-muted text-center px-2"
+                        >
                             {t('static', 'blog.imagePlaceholderSmall')}
                         </Paragraph>
                     </div>
@@ -89,7 +97,10 @@ function SmallBlogCard({ post }: { post: IBlogPost }) {
                         {brandName}
                     </Paragraph>
                 )}
-                <Heading level="h4" extendClass="line-clamp-2 text-text-primary">
+                <Heading
+                    level="h4"
+                    extendClass="line-clamp-2 text-text-primary"
+                >
                     {post.title}
                 </Heading>
             </div>
@@ -113,7 +124,7 @@ export default function BlogSection({ posts }: Props) {
                         label={t('static', 'blog.eyebrow')}
                         title={t('static', 'blog.title')}
                     />
-                    <NavArrows />
+                    {/* <NavArrows /> */}
                 </div>
 
                 {/* Asymmetric grid */}
@@ -133,7 +144,7 @@ export default function BlogSection({ posts }: Props) {
                 <div className="mt-10 flex justify-center">
                     <Link
                         href="/blog"
-                        className="text-[0.78rem] font-bold uppercase tracking-[0.15em] text-gold underline-offset-4 hover:underline"
+                        className="text-[0.78rem] font-bold tracking-[0.15em] text-gold uppercase underline-offset-4 hover:underline"
                     >
                         {t('static', 'blog.viewAllCta')}
                     </Link>

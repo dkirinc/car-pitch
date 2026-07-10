@@ -72,7 +72,7 @@ export default function IndexInfoSection({ stats, brands }: Props) {
     const { t } = usePageText();
 
     return (
-        <div className="flex flex-col gap-30 bg-bg-surface">
+        <div className="flex flex-col gap-20 bg-bg-surface">
             {/* Stats bar */}
             <section className="border-t border-border-default">
                 <div className="mx-auto max-w-7xl px-6 lg:px-12">

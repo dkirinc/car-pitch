@@ -14,10 +14,12 @@ type Props = {
 };
 
 type FormData = {
+    type: 'stock';
+    car_id: number;
     name: string;
     email: string;
     phone: string;
-    message: string;
+    notes: string;
 };
 
 const fieldClass =
@@ -26,10 +28,12 @@ const fieldClass =
 export function CarInquiryModal({ car, isOpen, onOpenChange }: Props) {
     const { t } = usePageText();
     const { data, setData, post, processing, reset } = useForm<FormData>({
+        type: 'stock',
+        car_id: car.id,
         name: '',
         email: '',
         phone: '',
-        message: `Zanima me vozilo: ${car.brand.name} ${car.model} (${car.year})`,
+        notes: `Zanima me vozilo: ${car.brand.name} ${car.model} (${car.year})`,
     });
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -88,8 +92,8 @@ export function CarInquiryModal({ car, isOpen, onOpenChange }: Props) {
                                 </TextField>
 
                                 <TextField
-                                    value={data.message}
-                                    onChange={(v) => setData('message', v)}
+                                    value={data.notes}
+                                    onChange={(v) => setData('notes', v)}
                                     className="flex flex-col gap-1"
                                 >
                                     <TextArea

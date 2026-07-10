@@ -66,14 +66,36 @@ export const staticText = {
         contactUs: 'KONTAKTIRAJ NAS',
     },
 
-    // ─── Homepage: Hero ─────────────────────────────────────────────────────────
+    // ─── Homepage: Hero (rotating slides) ───────────────────────────────────────
     hero: {
-        eyebrow: 'Auto Lider · Otok Krk',
-        headingLine1: 'Svaka vožnja,',
-        headingLine2: 'savršeno iskustvo.',
-        description:
-            'Premium vozila s garancijom kvalitete. Pronađite savršen automobil u našoj ponudi — od uvoza do isporuke.',
         scrollLabel: 'Skrolaj',
+        slideAriaLabel: 'Prikaži slajd',
+        slides: [
+            {
+                eyebrow: 'Volkswagen · Volvo · BMW · Audi',
+                headingLine1: 'Vaš partner za',
+                headingLine2: 'novi automobil.',
+                description:
+                    'Više od 12 premium brendova. Isporuka za 14 dana. Potpuna podrška od odabira do predaje ključeva.',
+                ctaLabel: 'SAZNAJ VIŠE',
+            },
+            {
+                eyebrow: 'Audi Premium',
+                headingLine1: '#1 Audi',
+                headingLine2: 'premium uvoznik.',
+                description:
+                    'Beskompromisna upravljivost i udobnost Audija osigurati će užitak u svakom trenutku vaše vožnje.',
+                ctaLabel: 'KONTAKTIRAJTE NAS',
+            },
+            {
+                eyebrow: 'BMW X3 M Sport',
+                headingLine1: 'Svaka vožnja,',
+                headingLine2: 'savršeno iskustvo.',
+                description:
+                    'Luksuzni BMW M paket opreme osigurava udobnost i snagu u svakom trenutku. Vaš novi automobil čeka vas.',
+                ctaLabel: 'POGLEDAJ PONUDU',
+            },
+        ],
     },
 
     // ─── Homepage: Stats bar + brands strip ────────────────────────────────────
@@ -94,6 +116,19 @@ export const staticText = {
         badgeAvailable: 'Dostupno',
         priceOnRequest: 'Od upita',
         emptyState: 'Trenutno nema istaknutih vozila u ponudi.',
+    },
+
+    // ─── Cars page (Prodaja vozila) ─────────────────────────────────────────────
+    carsPage: {
+        eyebrow: 'Ponuda',
+        title: 'Prodaja vozila',
+        subtitle:
+            'Pregledajte našu kompletnu ponudu premijum vozila. Svako vozilo je pažljivo odabrano i pripremljeno za vašu vožnju.',
+        filterLabel: 'Filtriraj po brendu',
+        allBrands: 'Sve',
+        countPrefix: 'Prikazano',
+        countSuffix: 'vozila',
+        emptyState: 'Trenutno nema vozila u ovoj kategoriji.',
     },
 
     // ─── Homepage: About (O nama) ───────────────────────────────────────────────
@@ -133,6 +168,53 @@ export const staticText = {
         successMessage:
             'Upit je uspješno poslan. Javit ćemo vam se u roku 24 sata.',
         messagePlaceholder: 'Koji automobil vas zanima?',
+    },
+
+    // ─── Contact page (Kontakt) ─────────────────────────────────────────────────
+    contactPage: {
+        subtitle:
+            'Odgovaramo u roku 24 sata. Dostupni smo za sve upite — od pregleda ponude do potpuno personaliziranog uvoza.',
+        successMessage:
+            'Upit je uspješno poslan. Javit ćemo vam se u roku 24 sata.',
+
+        tabStockLabel: 'Upit za vozilo iz ponude',
+        tabStockDescription: 'Pretražite i upitajte o dostupnim vozilima',
+        tabImportLabel: 'Upit za uvoz vozila',
+        tabImportDescription: 'Uvezemo bilo koje vozilo prema vašim željama',
+
+        personalInfoTitle: 'Vaši kontakt podaci',
+        vehiclePrefsTitle: 'Kakvo vozilo tražite?',
+
+        namePlaceholder: 'Vaše ime',
+        phonePlaceholder: '+385 xx xxx xxxx',
+        emailPlaceholder: 'vasa@email.com',
+        brandLabel: 'Marka',
+        bodyTypeLabel: 'Tip karoserije',
+        yearLabel: 'Godište vozila',
+        fuelLabel: 'Vrsta goriva',
+        transmissionLabel: 'Mjenjač',
+        budgetLabel: 'Proračun',
+        notesLabel: 'Dodatne napomene',
+        notesPlaceholder:
+            'Opišite što vas zanima — boja, oprema, kilometi, specifičnosti...',
+
+        sidebarDirectContactTitle: 'Direktan kontakt',
+        sidebarPhoneLabel: 'Telefon',
+        sidebarEmailLabel: 'E-mail',
+        sidebarAddressLabel: 'Adresa',
+        sidebarHoursTitle: 'Radno vrijeme',
+        sidebarHoursWeekdays: 'Pon – Pet',
+        sidebarHoursWeekdaysValue: '08:00 – 18:00',
+        sidebarHoursSaturday: 'Subota',
+        sidebarHoursSaturdayValue: '09:00 – 14:00',
+        sidebarHoursSunday: 'Nedjelja',
+        sidebarHoursSundayValue: 'Po dogovoru',
+        sidebarWhyTitle: 'Zašto Auto Lider?',
+        whyItem1: 'Princip ključ u ruke',
+        whyItem2: 'Kompletna papirologija',
+        whyItem3: 'Leasing i kredit',
+        whyItem4: 'Dostava do kućnog praga',
+        whyItem5: '18+ godina iskustva',
     },
 
     // ─── Shared: Car inquiry modal ──────────────────────────────────────────────
