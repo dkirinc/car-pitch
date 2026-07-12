@@ -129,6 +129,12 @@ export const staticText = {
         countPrefix: 'Prikazano',
         countSuffix: 'vozila',
         emptyState: 'Trenutno nema vozila u ovoj kategoriji.',
+        sortLabel: 'Sortiraj po',
+        sortNewest: 'Datum dodavanja: najnovije',
+        sortPriceAsc: 'Cijena: niža prema višoj',
+        sortPriceDesc: 'Cijena: viša prema nižoj',
+        sortYearDesc: 'Godište: novije prema starijem',
+        sortYearAsc: 'Godište: starije prema novijem',
     },
 
     // ─── Car detail page ─────────────────────────────────────────────────────────

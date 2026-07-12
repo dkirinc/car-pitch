@@ -16,6 +16,7 @@ export interface ICar {
     status: 'novo' | 'dostupno';
     brand: IBrand;
     thumbnail_url: string;
+    created_at: string;
 }
 
 export interface ICarDetail extends ICar {

@@ -116,6 +116,7 @@ export default function ContactSection() {
                                 value={data.email}
                                 onChange={(v) => setData('email', v)}
                                 className="flex flex-col gap-1"
+                                isRequired
                             >
                                 <Input type="email" placeholder={t('static', 'forms.emailPlaceholder')} className={fieldClass} />
                                 <FieldError className="text-[0.72rem] text-destructive" />

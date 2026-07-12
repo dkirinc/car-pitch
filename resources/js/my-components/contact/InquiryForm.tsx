@@ -286,6 +286,7 @@ export default function InquiryForm({ brands }: Props) {
                         <TextField
                             value={data.email}
                             onChange={(v) => setData('email', v)}
+                            isRequired
                         >
                             <Input
                                 type="email"

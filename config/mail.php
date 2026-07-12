@@ -115,4 +115,16 @@ return [
         'name' => env('MAIL_FROM_NAME', env('APP_NAME', 'Laravel')),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Inquiry Notification Recipient
+    |--------------------------------------------------------------------------
+    |
+    | The mailbox that receives a copy of every contact/inquiry form
+    | submission from the public site.
+    |
+    */
+
+    'admin_address' => env('MAIL_ADMIN_ADDRESS', 'info@autolider.com.hr'),
+
 ];

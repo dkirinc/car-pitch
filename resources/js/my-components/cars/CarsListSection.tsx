@@ -1,3 +1,4 @@
+import { ListBox, ListBoxItem, Select } from '@heroui/react';
 import { usePage } from '@inertiajs/react';
 import { useMemo, useState } from 'react';
 
@@ -35,6 +36,79 @@ function FilterChip({ label, active, onClick }: FilterChipProps) {
     );
 }
 
+type SortOption =
+    | 'newest'
+    | 'price_asc'
+    | 'price_desc'
+    | 'year_desc'
+    | 'year_asc';
+
+const sortComparators: Record<SortOption, (a: ICar, b: ICar) => number> = {
+    newest: (a, b) =>
+        new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
+    price_asc: (a, b) => comparePrice(a, b, 'asc'),
+    price_desc: (a, b) => comparePrice(a, b, 'desc'),
+    year_desc: (a, b) => b.year - a.year,
+    year_asc: (a, b) => a.year - b.year,
+};
+
+function comparePrice(a: ICar, b: ICar, direction: 'asc' | 'desc'): number {
+    if (a.price === null && b.price === null) return 0;
+    if (a.price === null) return 1;
+    if (b.price === null) return -1;
+
+    return direction === 'asc'
+        ? Number(a.price) - Number(b.price)
+        : Number(b.price) - Number(a.price);
+}
+
+type SortSelectProps = {
+    value: SortOption;
+    onChange: (value: SortOption) => void;
+};
+
+const sortItemClass =
+    'cursor-pointer rounded-none px-4 py-2 text-[0.78rem] text-text-secondary outline-none data-[hovered=true]:bg-gold/10 data-[hovered=true]:text-gold data-[selected=true]:text-gold data-[focus-visible=true]:bg-gold/10';
+
+function SortSelect({ value, onChange }: SortSelectProps) {
+    const { t } = usePageText();
+
+    const options: { id: SortOption; label: string }[] = [
+        { id: 'newest', label: t('static', 'carsPage.sortNewest') },
+        { id: 'price_asc', label: t('static', 'carsPage.sortPriceAsc') },
+        { id: 'price_desc', label: t('static', 'carsPage.sortPriceDesc') },
+        { id: 'year_desc', label: t('static', 'carsPage.sortYearDesc') },
+        { id: 'year_asc', label: t('static', 'carsPage.sortYearAsc') },
+    ];
+
+    return (
+        <Select
+            selectedKey={value}
+            onSelectionChange={(key) => onChange(key as SortOption)}
+            aria-label={t('static', 'carsPage.sortLabel')}
+        >
+            <Select.Trigger className="rounded-none border border-border-default bg-bg-surface-raised px-4 py-[7px] text-[0.78rem] text-text-secondary shadow-none outline-none data-[focus-visible=true]:border-gold/55 data-[hovered=true]:border-gold-border data-[hovered=true]:bg-bg-surface-raised">
+                <Select.Value className="text-text-secondary" />
+                <Select.Indicator className="text-text-muted" />
+            </Select.Trigger>
+            <Select.Popover className="rounded-none border border-border-default bg-bg-surface shadow-none">
+                <ListBox className="rounded-none p-1">
+                    {options.map((option) => (
+                        <ListBoxItem
+                            key={option.id}
+                            id={option.id}
+                            textValue={option.label}
+                            className={sortItemClass}
+                        >
+                            {option.label}
+                        </ListBoxItem>
+                    ))}
+                </ListBox>
+            </Select.Popover>
+        </Select>
+    );
+}
+
 export default function CarsListSection({ cars, brands }: Props) {
     const { t } = usePageText();
     const { url } = usePage();
@@ -50,12 +124,19 @@ export default function CarsListSection({ cars, brands }: Props) {
         },
     );
 
+    const [sortOption, setSortOption] = useState<SortOption>('newest');
+
     const filteredCars = useMemo(
         () =>
             selectedBrandSlug
                 ? cars.filter((car) => car.brand.slug === selectedBrandSlug)
                 : cars,
         [cars, selectedBrandSlug],
+    );
+
+    const sortedCars = useMemo(
+        () => [...filteredCars].sort(sortComparators[sortOption]),
+        [filteredCars, sortOption],
     );
 
     return (
@@ -96,17 +177,26 @@ export default function CarsListSection({ cars, brands }: Props) {
                     </div>
                 </div>
 
-                <div className="mt-8 border-t border-border-default pt-6 pb-6">
+                <div className="mt-8 flex flex-col gap-4 border-t border-border-default pt-6 pb-6 sm:flex-row sm:items-center sm:justify-between">
                     <Paragraph level="p3" extendClass="text-text-muted">
                         {t('static', 'carsPage.countPrefix')}{' '}
                         {filteredCars.length}{' '}
                         {t('static', 'carsPage.countSuffix')}
                     </Paragraph>
+                    <div className="flex items-center gap-3 sm:ml-auto">
+                        <Paragraph
+                            level="p4"
+                            extendClass="text-text-muted uppercase tracking-[0.25em]"
+                        >
+                            {t('static', 'carsPage.sortLabel')}
+                        </Paragraph>
+                        <SortSelect value={sortOption} onChange={setSortOption} />
+                    </div>
                 </div>
 
-                {filteredCars.length > 0 ? (
+                {sortedCars.length > 0 ? (
                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                        {filteredCars.map((car) => (
+                        {sortedCars.map((car) => (
                             <CarCard key={car.id} car={car} />
                         ))}
                     </div>

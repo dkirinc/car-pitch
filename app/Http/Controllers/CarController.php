@@ -30,6 +30,7 @@ class CarController extends Controller
                     'slug' => $car->brand->slug,
                 ],
                 'thumbnail_url' => $car->getFirstMediaUrl('images'),
+                'created_at' => $car->created_at->toISOString(),
             ]);
 
         $brands = Brand::where('is_active', true)
