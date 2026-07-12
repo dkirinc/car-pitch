@@ -15,7 +15,7 @@ export default function BlogPostHero({ post }: Props) {
     const brandName = post.car?.brand?.name ?? null;
 
     return (
-        <section className="relative">
+        <section className="relative pb-20">
             <div className="relative h-72 overflow-hidden md:h-96">
                 {post.cover_url ? (
                     <img
@@ -41,7 +41,7 @@ export default function BlogPostHero({ post }: Props) {
                 </div>
             </div>
 
-            <div className="mx-auto -mt-16 max-w-4xl px-6 lg:px-12">
+            <div className="mx-auto mt-20 max-w-4xl px-6 lg:px-12">
                 <div className="border border-border-default bg-bg-surface p-8 md:p-12">
                     <div className="flex items-center gap-3">
                         {brandName && (

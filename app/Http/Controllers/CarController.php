@@ -66,7 +66,7 @@ class CarController extends Controller
                 ],
                 'thumbnail_url' => $car->getFirstMediaUrl('images'),
                 'description' => $car->description,
-                'video_url' => $car->video_url,
+                'video_url' => $this->resolveVideoEmbedUrl($car->video_url),
                 'engine' => $car->engine,
                 'power' => $car->power,
                 'exterior_color' => $car->exterior_color,
@@ -78,5 +78,22 @@ class CarController extends Controller
                 'equipment' => $car->equipment,
             ],
         ]);
+    }
+
+    private function resolveVideoEmbedUrl(?string $url): ?string
+    {
+        if (! $url) {
+            return null;
+        }
+
+        if (preg_match('/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/', $url, $matches)) {
+            return "https://www.youtube.com/embed/{$matches[1]}";
+        }
+
+        if (str_contains($url, 'facebook.com') || str_contains($url, 'fb.watch')) {
+            return 'https://www.facebook.com/plugins/video.php?href='.urlencode($url).'&show_text=false';
+        }
+
+        return $url;
     }
 }

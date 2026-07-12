@@ -120,7 +120,8 @@ class CarForm
                             ->columnSpanFull(),
                         TextInput::make('video_url')
                             ->url()
-                            ->label('Video URL (YouTube)'),
+                            ->label('Video URL (YouTube ili Facebook)')
+                            ->helperText('Zalijepite standardni link na YouTube video ili Facebook video/reel.'),
                     ]),
 
                 Section::make('Status i vidljivost')

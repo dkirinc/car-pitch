@@ -4,7 +4,7 @@ import { usePageText } from '@/hooks/usePageText';
 import { Heading } from '@/my-components/typography/Heading';
 import { Paragraph } from '@/my-components/typography/Paragraph';
 
-import heroBmw from '../../../assets/heroBmw.png';
+import heroPorsche from '../../../assets/porš.jpg';
 
 export default function AboutHeroSection() {
     const { t } = usePageText();
@@ -12,7 +12,7 @@ export default function AboutHeroSection() {
     return (
         <section className="relative flex min-h-[70vh] items-end overflow-hidden pb-16">
             <img
-                src={heroBmw}
+                src={heroPorsche}
                 alt=""
                 className="absolute inset-0 h-full w-full object-cover"
             />
@@ -28,7 +28,10 @@ export default function AboutHeroSection() {
                     {t('static', 'aboutPage.eyebrow')}
                 </Paragraph>
 
-                <Heading level="h1" extendClass="text-text-primary mb-6 max-w-2xl">
+                <Heading
+                    level="h1"
+                    extendClass="text-text-primary mb-6 max-w-2xl"
+                >
                     {t('static', 'aboutPage.headingLine1')}
                     <br />
                     {t('static', 'aboutPage.headingLine2')}
