@@ -23,7 +23,7 @@ class NewInquiryReceived extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: "Novi upit — {$this->inquiry->name}",
+            subject: 'Autolider web stranica - Novi zahtjev',
         );
     }
 

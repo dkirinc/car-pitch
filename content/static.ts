@@ -52,6 +52,8 @@ export const staticText = {
         phonePlaceholder: 'Broj telefona *',
         submitCta: 'POŠALJI UPIT →',
         sendingCta: 'SLANJE...',
+        successModalTitle: 'Upit je poslan!',
+        successModalClose: 'ZATVORI',
     },
 
     // ─── Shared: Carousel / list navigation arrows ─────────────────────────────
@@ -355,6 +357,7 @@ export const staticText = {
     // ─── Shared: Car inquiry modal ──────────────────────────────────────────────
     carInquiry: {
         messagePlaceholder: 'Poruka',
+        successMessage: 'Upit je uspješno poslan. Javit ćemo vam se u roku 24 sata.',
     },
 
     // ─── Shared: Verify Email Modal ───────────────────────────────────────────

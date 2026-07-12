@@ -40,14 +40,14 @@ function ContactInfoRow({
 
 function HoursRow({ label, value }: { label: string; value: string }) {
     return (
-        <div className="flex items-center justify-between">
+        <>
             <Paragraph level="p3" extendClass="text-text-secondary">
                 {label}
             </Paragraph>
             <Paragraph level="p3" extendClass="text-text-primary font-semibold">
                 {value}
             </Paragraph>
-        </div>
+        </>
     );
 }
 
@@ -92,7 +92,7 @@ export default function ContactSidebar() {
                 <Heading level="h6" extendClass="text-text-muted uppercase tracking-[0.2em]">
                     {t('static', 'contactPage.sidebarHoursTitle')}
                 </Heading>
-                <div className="flex flex-col gap-3">
+                <div className="grid grid-cols-[auto_1fr] items-center gap-x-10 gap-y-3">
                     <HoursRow
                         label={t('static', 'contactPage.sidebarHoursWeekdays')}
                         value={t('static', 'contactPage.sidebarHoursWeekdaysValue')}

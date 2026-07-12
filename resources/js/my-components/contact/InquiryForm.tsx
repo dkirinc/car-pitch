@@ -1,10 +1,11 @@
 import { FieldError, Input, TextArea, TextField } from '@heroui/react';
 import { useForm, usePage } from '@inertiajs/react';
 import { ChevronDown } from 'lucide-react';
-import { type ReactNode, useEffect } from 'react';
+import { type ReactNode, useEffect, useState } from 'react';
 
 import { usePageText } from '@/hooks/usePageText';
 import { Button } from '@/my-components/shared/Button';
+import InquirySuccessModal from '@/my-components/shared/InquirySuccessModal';
 import { Heading } from '@/my-components/typography/Heading';
 import { Paragraph } from '@/my-components/typography/Paragraph';
 import type { IBrand } from '@/types/models';
@@ -166,8 +167,13 @@ export default function InquiryForm({ brands }: Props) {
         notes: '',
     });
 
+    const [isSuccessOpen, setIsSuccessOpen] = useState(false);
+
     useEffect(() => {
-        if (flash?.contact_success) reset();
+        if (flash?.contact_success) {
+            reset();
+            setIsSuccessOpen(true);
+        }
     }, [flash?.contact_success]);
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -186,13 +192,11 @@ export default function InquiryForm({ brands }: Props) {
 
     return (
         <div>
-            {flash?.contact_success && (
-                <div className="mb-6 border border-gold-border bg-gold-subtle px-5 py-4">
-                    <Paragraph level="p2" extendClass="text-gold">
-                        {t('static', 'contactPage.successMessage')}
-                    </Paragraph>
-                </div>
-            )}
+            <InquirySuccessModal
+                isOpen={isSuccessOpen}
+                onOpenChange={setIsSuccessOpen}
+                message={t('static', 'contactPage.successMessage')}
+            />
 
             {/* Inquiry type tabs */}
             <div className="mb-8 grid grid-cols-1 gap-3 sm:grid-cols-2">

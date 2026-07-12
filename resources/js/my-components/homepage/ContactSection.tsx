@@ -1,10 +1,11 @@
 import { FieldError, Input, TextArea, TextField } from '@heroui/react';
 import { useForm, usePage } from '@inertiajs/react';
 import { Mail, MapPin, Phone } from 'lucide-react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { usePageText } from '@/hooks/usePageText';
 import { Button } from '@/my-components/shared/Button';
+import InquirySuccessModal from '@/my-components/shared/InquirySuccessModal';
 import { SectionEyebrow } from '@/my-components/shared/SectionEyebrow';
 import { Paragraph } from '@/my-components/typography/Paragraph';
 
@@ -48,9 +49,12 @@ export default function ContactSection() {
         notes: '',
     });
 
+    const [isSuccessOpen, setIsSuccessOpen] = useState(false);
+
     useEffect(() => {
         if (flash?.contact_success) {
             reset();
+            setIsSuccessOpen(true);
         }
     }, [flash?.contact_success]);
 
@@ -94,13 +98,11 @@ export default function ContactSection() {
 
                     {/* Right — form */}
                     <div>
-                        {flash?.contact_success && (
-                            <div className="mb-6 border border-gold-border bg-gold-subtle px-5 py-4">
-                                <Paragraph level="p2" extendClass="text-gold">
-                                    {t('static', 'contact.successMessage')}
-                                </Paragraph>
-                            </div>
-                        )}
+                        <InquirySuccessModal
+                            isOpen={isSuccessOpen}
+                            onOpenChange={setIsSuccessOpen}
+                            message={t('static', 'contact.successMessage')}
+                        />
 
                         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                             <TextField

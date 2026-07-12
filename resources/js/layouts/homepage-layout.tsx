@@ -12,7 +12,7 @@ export default function HomepageLayout({ children }: { children: ReactNode }) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     return (
-        <div className="min-h-screen overflow-x-hidden bg-bg-base">
+        <div className="min-h-screen overflow-x-clip bg-bg-base">
             <Header onMobileMenuToggle={setMobileMenuOpen} />
             <motion.main
                 key={url}

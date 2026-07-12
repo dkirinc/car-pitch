@@ -1,7 +1,7 @@
 import { Link } from '@inertiajs/react';
 import { Menu as MenuIcon } from 'lucide-react';
 import { motion } from 'motion/react';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 import { usePageText } from '@/hooks/usePageText';
 
@@ -29,6 +29,7 @@ const Header = ({ onMobileMenuToggle }: Props) => {
             typeof window !== 'undefined' && window.scrollY > SCROLL_THRESHOLD,
     );
     const [hoveredKey, setHoveredKey] = useState<string | null>(null);
+    const headerRef = useRef<HTMLElement>(null);
 
     useEffect(() => {
         const onScroll = () => {
@@ -41,8 +42,29 @@ const Header = ({ onMobileMenuToggle }: Props) => {
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
+    useLayoutEffect(() => {
+        const header = headerRef.current;
+        if (!header) return;
+
+        const updateHeight = () => {
+            document.documentElement.style.setProperty(
+                '--header-height',
+                `${header.offsetHeight}px`,
+            );
+        };
+
+        updateHeight();
+        const observer = new ResizeObserver(updateHeight);
+        observer.observe(header);
+
+        return () => observer.disconnect();
+    }, []);
+
     return (
-        <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4">
+        <header
+            ref={headerRef}
+            className="fixed inset-x-0 top-0 z-50 px-4 pt-4"
+        >
             <nav
                 aria-label={t('static', 'header.ariaLabel')}
                 className={`mx-auto flex max-w-[1400px] items-center justify-between rounded-xl border px-6 py-3 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 ${
