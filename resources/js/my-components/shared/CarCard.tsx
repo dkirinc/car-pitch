@@ -4,7 +4,6 @@ import React, { ReactNode } from 'react';
 import { useState } from 'react';
 
 import { usePageText } from '@/hooks/usePageText';
-import { Button } from '@/my-components/shared/Button';
 import { CarInquiryModal } from '@/my-components/shared/CarInquiryModal';
 import { Heading } from '@/my-components/typography/Heading';
 import { Paragraph } from '@/my-components/typography/Paragraph';

@@ -1,5 +1,4 @@
 import { Link } from '@inertiajs/react';
-import { ChevronDown } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 
@@ -29,10 +28,6 @@ export default function HeroSection() {
 
         return () => clearInterval(id);
     }, [activeIndex]);
-
-    const scrollToContent = () => {
-        window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
-    };
 
     return (
         <section className="relative flex min-h-screen items-center overflow-hidden">

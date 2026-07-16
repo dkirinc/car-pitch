@@ -1,7 +1,7 @@
 import { FieldError, Input, TextArea, TextField } from '@heroui/react';
 import { useForm, usePage } from '@inertiajs/react';
 import { Mail, MapPin, Phone } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { usePageText } from '@/hooks/usePageText';
 import { Button } from '@/my-components/shared/Button';
@@ -50,13 +50,17 @@ export default function ContactSection() {
     });
 
     const [isSuccessOpen, setIsSuccessOpen] = useState(false);
+    const [prevContactSuccess, setPrevContactSuccess] = useState(
+        flash?.contact_success,
+    );
 
-    useEffect(() => {
+    if (flash?.contact_success !== prevContactSuccess) {
+        setPrevContactSuccess(flash?.contact_success);
         if (flash?.contact_success) {
             reset();
             setIsSuccessOpen(true);
         }
-    }, [flash?.contact_success]);
+    }
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();

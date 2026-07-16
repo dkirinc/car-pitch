@@ -4,12 +4,13 @@ import { CheckCircle2 } from 'lucide-react';
 import { useState } from 'react';
 
 
+import { usePageText } from '@/hooks/usePageText';
+
 import { Heading } from '../typography/Heading';
 import { Paragraph } from '../typography/Paragraph';
 
 import { Button } from './Button';
 
-import { usePageText } from '@/hooks/usePageText';
 
 const VerifyEmailSuccessModal = () => {
     const { t } = usePageText();
