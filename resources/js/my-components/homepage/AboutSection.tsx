@@ -13,7 +13,7 @@ export default function AboutSection() {
     return (
         <section className="bg-bg-surface py-20">
             <div className="mx-auto max-w-7xl px-6 lg:px-12">
-                <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20">
+                <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2 lg:gap-20">
                     {/* Left — image placeholder */}
                     <div className="relative aspect-[4/3] w-full overflow-hidden bg-bg-surface">
                         <img

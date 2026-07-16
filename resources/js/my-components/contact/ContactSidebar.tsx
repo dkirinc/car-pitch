@@ -63,8 +63,8 @@ export default function ContactSidebar() {
     ];
 
     return (
-        <div className="flex flex-col gap-8">
-            <div className="flex flex-col gap-5 border border-border-default bg-bg-surface p-6">
+        <div className="flex flex-col gap-8 md:flex-row lg:flex-col">
+            <div className="flex flex-col gap-5 border border-border-default bg-bg-surface p-6 md:flex-1 md:min-w-0">
                 <Heading level="h6" extendClass="text-text-muted uppercase tracking-[0.2em]">
                     {t('static', 'contactPage.sidebarDirectContactTitle')}
                 </Heading>
@@ -88,27 +88,29 @@ export default function ContactSidebar() {
                 />
             </div>
 
-            <div className="flex flex-col gap-4 border border-border-default bg-bg-surface p-6">
+            <div className="flex flex-col gap-4 border border-border-default bg-bg-surface p-6 md:flex-1 md:min-w-0">
                 <Heading level="h6" extendClass="text-text-muted uppercase tracking-[0.2em]">
                     {t('static', 'contactPage.sidebarHoursTitle')}
                 </Heading>
-                <div className="grid grid-cols-[auto_1fr] items-center gap-x-10 gap-y-3">
-                    <HoursRow
-                        label={t('static', 'contactPage.sidebarHoursWeekdays')}
-                        value={t('static', 'contactPage.sidebarHoursWeekdaysValue')}
-                    />
-                    <HoursRow
-                        label={t('static', 'contactPage.sidebarHoursSaturday')}
-                        value={t('static', 'contactPage.sidebarHoursSaturdayValue')}
-                    />
-                    <HoursRow
-                        label={t('static', 'contactPage.sidebarHoursSunday')}
-                        value={t('static', 'contactPage.sidebarHoursSundayValue')}
-                    />
+                <div className="flex flex-1 items-center">
+                    <div className="grid w-full grid-cols-[auto_1fr] items-center gap-x-10 gap-y-3">
+                        <HoursRow
+                            label={t('static', 'contactPage.sidebarHoursWeekdays')}
+                            value={t('static', 'contactPage.sidebarHoursWeekdaysValue')}
+                        />
+                        <HoursRow
+                            label={t('static', 'contactPage.sidebarHoursSaturday')}
+                            value={t('static', 'contactPage.sidebarHoursSaturdayValue')}
+                        />
+                        <HoursRow
+                            label={t('static', 'contactPage.sidebarHoursSunday')}
+                            value={t('static', 'contactPage.sidebarHoursSundayValue')}
+                        />
+                    </div>
                 </div>
             </div>
 
-            <div className="flex flex-col gap-4 border border-border-default bg-bg-surface p-6">
+            <div className="flex flex-col gap-4 border border-border-default bg-bg-surface p-6 md:flex-1 md:min-w-0">
                 <Heading level="h6" extendClass="text-text-muted uppercase tracking-[0.2em]">
                     {t('static', 'contactPage.sidebarWhyTitle')}
                 </Heading>

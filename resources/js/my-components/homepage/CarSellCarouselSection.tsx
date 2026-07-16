@@ -32,10 +32,12 @@ export default function CarSellCarouselSection({ cars }: Props) {
                         title={t('static', 'carSell.title')}
                     />
                     <div className="flex items-center gap-4">
-                        <NavArrows
-                            onPrev={() => scroll('left')}
-                            onNext={() => scroll('right')}
-                        />
+                        <div className="hidden sm:block">
+                            <NavArrows
+                                onPrev={() => scroll('left')}
+                                onNext={() => scroll('right')}
+                            />
+                        </div>
                         <Link
                             href="/cars"
                             className="text-[0.78rem] font-bold tracking-[0.15em] text-gold uppercase underline-offset-4 hover:underline"

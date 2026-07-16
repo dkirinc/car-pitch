@@ -74,7 +74,7 @@ const Header = ({ onMobileMenuToggle }: Props) => {
                 }`}
             >
                 {/* Logo */}
-                <div className="flex flex-1 items-center">
+                <div className="flex flex-none items-center">
                     <Link href="/">
                         <img
                             src={logo}
@@ -94,7 +94,7 @@ const Header = ({ onMobileMenuToggle }: Props) => {
                             key={item.label}
                             href={item.href}
                             onMouseEnter={() => setHoveredKey(item.label)}
-                            className="relative rounded-lg px-4 py-1.5"
+                            className="relative shrink-0 rounded-lg px-4 py-1.5"
                         >
                             {hoveredKey === item.label && (
                                 <motion.span
@@ -110,7 +110,7 @@ const Header = ({ onMobileMenuToggle }: Props) => {
                             )}
                             <Paragraph
                                 level="p3"
-                                extendClass="text-text-secondary font-semibold uppercase tracking-[0.1em]"
+                                extendClass="whitespace-nowrap text-text-secondary font-semibold uppercase tracking-[0.1em]"
                             >
                                 {item.label}
                             </Paragraph>
@@ -119,10 +119,10 @@ const Header = ({ onMobileMenuToggle }: Props) => {
                 </div>
 
                 {/* Desktop CTA */}
-                <div className="hidden flex-1 items-center justify-end md:flex">
+                <div className="hidden flex-none items-center justify-end md:flex">
                     <Link
                         href="/contact"
-                        className="border border-gold-border px-5 py-2 text-[0.75rem] font-bold tracking-[0.15em] text-gold uppercase transition-colors duration-200 hover:border-gold/60 hover:bg-gold-subtle"
+                        className="whitespace-nowrap border border-gold-border px-5 py-2 text-[0.75rem] font-bold tracking-[0.15em] text-gold uppercase transition-colors duration-200 hover:border-gold/60 hover:bg-gold-subtle"
                     >
                         {t('static', 'header.ctaLabel')}
                     </Link>

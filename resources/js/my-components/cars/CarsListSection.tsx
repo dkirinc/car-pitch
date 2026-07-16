@@ -87,9 +87,9 @@ function SortSelect({ value, onChange }: SortSelectProps) {
             onSelectionChange={(key) => onChange(key as SortOption)}
             aria-label={t('static', 'carsPage.sortLabel')}
         >
-            <Select.Trigger className="rounded-none border border-border-default bg-bg-surface-raised px-4 py-[7px] text-[0.78rem] text-text-secondary shadow-none outline-none data-[focus-visible=true]:border-gold/55 data-[hovered=true]:border-gold-border data-[hovered=true]:bg-bg-surface-raised">
-                <Select.Value className="text-text-secondary" />
-                <Select.Indicator className="text-text-muted" />
+            <Select.Trigger className="rounded-none border border-border-default bg-bg-surface-raised px-3 py-[7px] text-[0.78rem] text-text-secondary shadow-none outline-none max-sm:!pr-3 max-sm:justify-center data-[focus-visible=true]:border-gold/55 data-[hovered=true]:border-gold-border data-[hovered=true]:bg-bg-surface-raised sm:px-4">
+                <Select.Value className="hidden text-text-secondary sm:block" />
+                <Select.Indicator className="text-text-muted max-sm:!static" />
             </Select.Trigger>
             <Select.Popover className="rounded-none border border-border-default bg-bg-surface shadow-none">
                 <ListBox className="rounded-none p-1">
