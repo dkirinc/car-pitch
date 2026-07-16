@@ -4,7 +4,7 @@ import { usePageText } from '@/hooks/usePageText';
 import { Heading } from '@/my-components/typography/Heading';
 import { Paragraph } from '@/my-components/typography/Paragraph';
 
-import heroPorsche from '../../../assets/porš.jpg';
+import heroPorsche from '../../../assets/porsche-hero.jpg';
 
 export default function AboutHeroSection() {
     const { t } = usePageText();
