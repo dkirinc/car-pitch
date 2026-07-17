@@ -22,6 +22,7 @@ export interface ICar {
 export interface ICarDetail extends ICar {
     description: string;
     video_url: string | null;
+    gallery: string[];
     engine: string;
     power: number;
     exterior_color: string;

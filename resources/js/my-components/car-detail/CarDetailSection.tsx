@@ -1,5 +1,6 @@
 import { usePageText } from '@/hooks/usePageText';
 import CarDetailSidebar from '@/my-components/car-detail/CarDetailSidebar';
+import { ImageCarousel } from '@/my-components/shared/ImageCarousel';
 import { Heading } from '@/my-components/typography/Heading';
 import { Paragraph } from '@/my-components/typography/Paragraph';
 import type { ICarDetail } from '@/types/models';
@@ -48,10 +49,15 @@ export default function CarDetailSection({ car }: Props) {
                             </Paragraph>
                         </div>
 
-                        {/* Video pregled */}
+                        {/* Video pregled (ili Galerija ako video nije dostupan) */}
                         <div className="flex flex-col gap-4">
                             <Heading level="h2">
-                                {t('static', 'carDetail.videoTitle')}
+                                {t(
+                                    'static',
+                                    !car.video_url && car.gallery.length > 0
+                                        ? 'carDetail.galleryTitle'
+                                        : 'carDetail.videoTitle',
+                                )}
                             </Heading>
                             {car.video_url ? (
                                 <div className="aspect-video w-full overflow-hidden bg-bg-surface-raised">
@@ -62,6 +68,8 @@ export default function CarDetailSection({ car }: Props) {
                                         allowFullScreen
                                     />
                                 </div>
+                            ) : car.gallery.length > 0 ? (
+                                <ImageCarousel images={car.gallery} />
                             ) : (
                                 <div className="flex aspect-video w-full items-center justify-center bg-bg-surface-raised">
                                     <Paragraph level="p3" extendClass="text-text-muted">
@@ -111,6 +119,16 @@ export default function CarDetailSection({ car }: Props) {
                                 />
                             </div>
                         </div>
+
+                        {/* Galerija — samo ako je video prikazan gore, inače je već zauzeo njegovo mjesto */}
+                        {car.video_url && car.gallery.length > 0 && (
+                            <div className="flex flex-col gap-4">
+                                <Heading level="h2">
+                                    {t('static', 'carDetail.galleryTitle')}
+                                </Heading>
+                                <ImageCarousel images={car.gallery} />
+                            </div>
+                        )}
 
                         {/* Oprema */}
                         {car.equipment.length > 0 && (

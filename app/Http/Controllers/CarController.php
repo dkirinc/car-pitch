@@ -6,6 +6,7 @@ use App\Models\Brand;
 use App\Models\Car;
 use Inertia\Inertia;
 use Inertia\Response;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class CarController extends Controller
 {
@@ -67,6 +68,9 @@ class CarController extends Controller
                 'thumbnail_url' => $car->getFirstMediaUrl('images'),
                 'description' => $car->description,
                 'video_url' => $this->resolveVideoEmbedUrl($car->video_url),
+                'gallery' => $car->getMedia('images')
+                    ->map(fn (Media $media) => $media->getUrl())
+                    ->all(),
                 'engine' => $car->engine,
                 'power' => $car->power,
                 'exterior_color' => $car->exterior_color,

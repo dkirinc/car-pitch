@@ -152,6 +152,7 @@ export const staticText = {
         aboutTitle: 'O vozilu',
         videoTitle: 'Video pregled',
         videoPlaceholder: 'Video pregled uskoro dostupan.',
+        galleryTitle: 'Galerija',
         technicalTitle: 'Tehnički podaci',
         engineLabel: 'Motor',
         powerLabel: 'Snaga',
